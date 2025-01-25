@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using GGJ2025;
 using NUnit.Framework;
 using UnityEngine;
@@ -122,10 +123,107 @@ public class GridControllerShould
     public void Get_element_on_position()
     {
         var obj2 = new GridObject(2,2);
+        
         bool result = gridController.TryAdd(0,0, obj2);
+        
         Assert.IsTrue(result);
         Assert.AreEqual(obj2, gridController[0,0]);
     }
+    
+    [Test]
+    public void Check_if_can_place_element()
+    {
+        var obj2 = new GridObject(2,2);
+        
+        bool result = gridController.IsEmpty(0, 0, obj2);
+        
+        Assert.IsTrue(result);
+    }
+    
+    [Test]
+    public void Check_if_can_NOT_place_element()
+    {
+        var obj1 = new GridObject(1,1);
+        bool result = gridController.TryAdd(1,1, obj1);
+        Assert.IsTrue(result);
+        
+        var obj2 = new GridObject(2,2);
+        result = gridController.IsEmpty(1, 1, obj2);
+        Assert.IsFalse(result);
+        result = gridController.IsEmpty(0, 0, obj2);
+        Assert.IsFalse(result);
+        result = gridController.IsEmpty(1, 0, obj2);
+        Assert.IsFalse(result);
+        result = gridController.IsEmpty(0, 1, obj2);
+        Assert.IsFalse(result);
+    }
+
+    [Test]
+    public void Can_NOT_place_element_out_of_grid()
+    {
+        var obj1 = new GridObject(1,1);
+        
+        bool result = gridController.TryAdd(30,30, obj1);
+        Assert.IsFalse(result);
+    }
+    
+    [Test]
+    public void Can_NOT_place_element_out_of_grid_negative_position()
+    {
+        var obj1 = new GridObject(1,1);
+        
+        bool result = gridController.TryAdd(-1,0, obj1);
+        Assert.IsFalse(result);
+    }
+    
+    [Test]
+    public void Can_NOT_place_big_element_out_of_grid()
+    {
+        var obj1 = new GridObject(2,2);
+        
+        bool result = gridController.TryAdd(15,15, obj1);
+        Assert.IsFalse(result);
+    }
+    
+    [Test]
+    public void Get_empty_cells()
+    {
+        gridController = new GridController<GridObject>(3, 3);
+        
+        var obj1 = new GridObject(2,2);
+        
+        bool result = gridController.TryAdd(0,0, obj1);
+        Assert.IsTrue(result);
+
+        List<Vector2Int> emptyCells = gridController.GetEmpties();
+        
+        Assert.IsTrue(emptyCells.Count == 5);
+        Assert.Contains(new Vector2Int(2, 0), emptyCells);
+        Assert.Contains(new Vector2Int(2, 1), emptyCells);
+        Assert.Contains(new Vector2Int(0, 2), emptyCells);
+        Assert.Contains(new Vector2Int(1, 2), emptyCells);
+        Assert.Contains(new Vector2Int(2, 2), emptyCells);
+    }
+    
+    [Test]
+    public void Get_occupied_cells()
+    {
+        gridController = new GridController<GridObject>(3, 3);
+        
+        var obj1 = new GridObject(2,2);
+        
+        bool result = gridController.TryAdd(0,0, obj1);
+        Assert.IsTrue(result);
+
+        List<Vector2Int> occupiedCells = gridController.GetOccupied();
+        
+        Assert.IsTrue(occupiedCells.Count == 4);
+        Assert.Contains(new Vector2Int(0, 0), occupiedCells);
+        Assert.Contains(new Vector2Int(1, 0), occupiedCells);
+        Assert.Contains(new Vector2Int(0, 1), occupiedCells);
+        Assert.Contains(new Vector2Int(1, 1), occupiedCells);
+    }
+    
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
     // `yield return null;` to skip a frame.
     [UnityTest]
