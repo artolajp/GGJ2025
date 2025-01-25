@@ -37,6 +37,11 @@ namespace GGJ2025
         {
             Debug.Log("Pressed!");
         }
+        
+        private void OnConfirm()
+        {
+            Debug.Log("Confirmed!");
+        }
 
         private void FixedUpdate()
         {

@@ -11,7 +11,7 @@ namespace GGJ2025
             
         }
         
-        public GridObject(int height, int width)
+        public GridObject(int width, int height)
         {
             this.height = height;
             this.width = width;

@@ -22,7 +22,13 @@ namespace GGJ2025
             {
                 for (int j = 0; j < value.Size().y; j++)
                 {
-                    if (grid[x + i, y + j] != null) { return false; }
+                    if (x + i >= grid.GetLength(0) || y + j >= grid.GetLength(1)) { return false;}
+                    if (x + i < 0 || y + j < 0) { return false;}
+                    
+                    if (grid[x + i, y + j] != null)
+                    {
+                        return false;
+                    }
                 }
             }
             
