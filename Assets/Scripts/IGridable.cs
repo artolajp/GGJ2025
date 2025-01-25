@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 namespace GGJ2025
 {
     public interface IGridable
     {
-        public Vector2Int Size();
+        public List<Vector2Int> GetPositions();
     }
 }

@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Drawing;
 using UnityEngine;
 namespace GGJ2025
 {
@@ -18,17 +15,14 @@ namespace GGJ2025
         public bool IsEmpty (int x, int y) => grid[x,y] == null;
         public bool IsEmpty (int x, int y, T value)
         {
-            for (int i = 0; i < value.Size().x; i++)
+            foreach (var pos in value.GetPositions())
             {
-                for (int j = 0; j < value.Size().y; j++)
+                if (x + pos.x >= grid.GetLength(0) || y + pos.y >= grid.GetLength(1)) { return false;}
+                if (x + pos.x < 0 || y + pos.y < 0) { return false;}
+                
+                if (grid[x + pos.x, y + pos.y] != null)
                 {
-                    if (x + i >= grid.GetLength(0) || y + j >= grid.GetLength(1)) { return false;}
-                    if (x + i < 0 || y + j < 0) { return false;}
-                    
-                    if (grid[x + i, y + j] != null)
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
             
@@ -41,31 +35,36 @@ namespace GGJ2025
             {
                 return false;
             }
+            var xMax = 0;
+            var yMax = 0;
+            var positions = value.GetPositions();
             
-            if (x + value.Size().x > grid.GetLength(0) || y + value.Size().y > grid.GetLength(1))
+            foreach (var position in positions)
+            {
+                if(position.x > xMax) xMax = position.x;
+                if(position.y > yMax) yMax = position.y;
+            }
+            
+            if (x + xMax >= grid.GetLength(0) || y + yMax >= grid.GetLength(1))
             {
                 return false;
             }
             
-            if (x > grid.GetLength(0) || y > grid.GetLength(1))
+            if (x >= grid.GetLength(0) || y >= grid.GetLength(1))
             {
                 return false;
             }
 
-            for (int i = 0; i < value.Size().x; i++)
+            foreach (var position in positions)
             {
-                for (int j = 0; j < value.Size().y; j++)
-                {
-                    if (grid[x + i, y + j] != null) { return false; }
-                }
+                if (grid[x + position.x, y + position.y] != null) { return false; }
             }
-            for (int i = 0; i < value.Size().x; i++)
+            
+            foreach (var position in positions)
             {
-                for (int j = 0; j < value.Size().y; j++)
-                {
-                    grid[x + i, y + j] = value;
-                }
+                grid[x + position.x, y + position.y] = value;
             }
+            
             return true;
         }
         

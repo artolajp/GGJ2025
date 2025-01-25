@@ -4,7 +4,7 @@ namespace GGJ2025
 {
     public class PlacementManager : MonoBehaviour
     {
-        private GridController<GridObject> gridController;
+        private GridController<IGridable> gridController;
         private List<GameObject> cells = new List<GameObject>();
         private List<GameObject> tempCells = new List<GameObject>();
         
@@ -17,18 +17,22 @@ namespace GGJ2025
         
         [SerializeField] Vector2Int targetCell;
         [SerializeField] Vector2Int targetSize = Vector2Int.one;
+        [SerializeField] List<Vector2Int> cellShape = new List<Vector2Int>(){Vector2Int.zero};
         
         void Start()
         {
-            gridController = new GridController<GridObject>(16, 16);
+            gridController = new GridController<IGridable>(16, 20);
             RefreshGrid();
         }
         
         void Update()
         {
+            //var gridObject = new GridObject(targetSize.x, targetSize.y);
+            var gridObject = new CustomGridObject(cellShape);
+            
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                gridController.TryAdd(targetCell.x, targetCell.y, new GridObject(targetSize.x, targetSize.y));
+                gridController.TryAdd(targetCell.x, targetCell.y, gridObject);
                 RefreshGrid();
             }
 
@@ -42,17 +46,14 @@ namespace GGJ2025
             tempCells.Clear();
 
             var targetPrefab = p1CellPrefab;
-            if (!gridController.IsEmpty(targetCell.x, targetCell.y, new GridObject(targetSize.x, targetSize.y)))
+            if (!gridController.IsEmpty(targetCell.x, targetCell.y, gridObject))
             {
                 targetPrefab = cellPrefab;
             }
-            
-            for (int x = targetCell.x; x < targetCell.x + targetSize.x; x++)
+
+            foreach (var position in gridObject.GetPositions())
             {
-                for (int y = targetCell.y; y < targetCell.y + targetSize.y; y++)
-                {
-                    tempCells.Add(Instantiate(targetPrefab, new Vector3(x, 0.15f, y), Quaternion.identity , transform));
-                }
+                tempCells.Add(Instantiate(targetPrefab, new Vector3(targetCell.x + position.x, 0.15f, targetCell.y + position.y), Quaternion.identity , transform));
             }
         }
         
