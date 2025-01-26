@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material_Bubble
+  m_Name: Material_Bubble 2
   m_Shader: {fileID: -6465566751694194690, guid: 560f3d5d5854e0a47b939b1378d21b65, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
