@@ -6,9 +6,9 @@ namespace GGJ2025
     public class PlayerController : MonoBehaviour
     {
         // Properties.
+        [Header("Player properties.")]
         [SerializeField]
         private int playerNumber = 0;
-
         [SerializeField]
         private float speed = 10f;
 
