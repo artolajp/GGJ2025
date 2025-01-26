@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -34,18 +34,32 @@ namespace GGJ2025
         
         PlayerController playerController1;
         PlayerController playerController2;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+        private float currentTime = 0;
+        private float Timer = 15;
+        
+        [SerializeField] private TMP_Text timerText;
+        
         void Start()
         {
             ChangeState();
+            StartClock();
+        }
+        
+        private void StartClock()
+        {
+            currentTime = Timer;
         }
 
         private void Update()
         {
-            // if (Input.GetKeyDown(KeyCode.Space))
-            // {
-            //     ChangeState();
-            // }
+            currentTime -= Time.deltaTime;
+            if (currentTime < 0)
+            {
+                ChangeState();
+            }
+            
+            timerText.text = currentTime.ToString("0.00");
         }
 
         void InitBuildings()
@@ -64,6 +78,7 @@ namespace GGJ2025
             if(p1) Destroy(p1);
             if(p2) Destroy(p2);
             placementManager.PauseGrid();
+            currentTime = Timer;
             
             switch (gameState)
             {
@@ -72,14 +87,22 @@ namespace GGJ2025
                     StartPlaying();
                     break;
                 case GameState.Playing when currentScoreP1 < targetScore && currentScoreP2 < targetScore:
-                    scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {ChangeState();});
+                    scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {});
+                    currentTime = 4f;
                     gameState = GameState.Score;
                     break;
                 case GameState.Playing:
-                    scorePanel.Show(currentScoreP1, currentScoreP2, targetScore, () => { Application.Quit(); });
+                    scorePanel.Show(currentScoreP1, currentScoreP2, targetScore, () =>
+                    {
+                        if(currentScoreP1>currentScoreP2) SceneManager.LoadScene("WinGreen");
+                        else if (currentScoreP2>currentScoreP1) SceneManager.LoadScene("WinRed");
+                        else SceneManager.LoadScene("Menu");
+                    });
                     gameState = GameState.EndScreen;
                     break;
                 case GameState.Score:
+                    
+                    scorePanel.Hide();
                     StartBuilding();
                     break;
                 case GameState.Building:
