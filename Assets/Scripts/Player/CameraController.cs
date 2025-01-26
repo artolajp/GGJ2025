@@ -19,6 +19,11 @@ public class CameraController : MonoBehaviour
     private GameObject player_2;
     private GameObject remainingPlayer = null;
 
+    void Awake()
+    {
+        FindObjectOfType<AudioController>().AudioPlaySound("Music_Level_01");
+    }
+
     void Update()
     {
         Vector3 targetPosition = transform.position;

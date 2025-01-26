@@ -890,6 +890,16 @@ MonoBehaviour:
     spatialBlend: 0
     minimumDistance: 0
     maximumDistance: 0
+  - clip: {fileID: 8300000, guid: 118068f6b7d3900489f40a8ea22b7b60, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 1
+    priority: 1
+    volume: 0.5
+    pitch: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
   - clip: {fileID: 8300000, guid: f6f04061a7e643a4baeed53bbbb1612c, type: 3}
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
