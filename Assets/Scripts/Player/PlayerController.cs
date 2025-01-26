@@ -54,6 +54,9 @@ namespace GGJ2025
         {
             if (other.tag == "HurtBox")
             {
+                // Play sound.
+                FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1.2f, "Sound_ExplodingBalloon_1", "Sound_ExplodingBalloon_2", "Sound_ExplodingBalloon_3");
+
                 // Send event to controller.
 
                 Instantiate(particleBubblePop, transform.position, Quaternion.identity);

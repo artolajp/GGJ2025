@@ -969,6 +969,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 32, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1281085161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3600338578847668220, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+  m_PrefabInstance: {fileID: 3107770762042862666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1281085167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281085161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae65c121c190f841bfadabc4322f28d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: 70005a164ec1ec04cb4bbe1f74bb0d7a, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
+  - clip: {fileID: 8300000, guid: 141207fb652e63c4ca3064deb3b0435f, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
+  - clip: {fileID: 8300000, guid: f6f04061a7e643a4baeed53bbbb1612c, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
 --- !u!1 &1407124989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9158171572740309288, guid: a0e5a1b2c1af124458c4aaddbc9a9705, type: 3}
@@ -1717,7 +1765,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3600338578847668220, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1281085167}
   m_SourcePrefab: {fileID: 100100000, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
 --- !u!1001 &5767284328127387661
 PrefabInstance:
