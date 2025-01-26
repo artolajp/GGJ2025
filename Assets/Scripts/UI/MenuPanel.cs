@@ -2,16 +2,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MenuPanel : MonoBehaviour
+namespace GGJ2025
 {
-    [SerializeField] private Button startButton;
-    
-    void Start()
+    public class MenuPanel : MonoBehaviour
     {
-        startButton.onClick.AddListener(GoToGame);
-    }
-    private void GoToGame()
-    {
-        SceneManager.LoadScene("Game");
+        [SerializeField] private Button startButton;
+
+        void Start()
+        {
+            startButton.onClick.AddListener(GoToGame);
+        }
+        private void GoToGame()
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }

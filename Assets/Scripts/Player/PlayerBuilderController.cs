@@ -28,11 +28,13 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnRotate()
     {
+        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
         transform.Rotate(0, 90f, 0);
     }
 
     private void OnConfirm()
     {
+        //FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_PlaceBuilding");
         OnConfirmed?.Invoke(this);
     }
 
