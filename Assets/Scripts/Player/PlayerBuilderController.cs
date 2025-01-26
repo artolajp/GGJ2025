@@ -38,6 +38,6 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Colliding!");
+        //Debug.Log("Colliding!");
     }
 }

@@ -26,6 +26,7 @@ namespace GGJ2025
         [SerializeField] private PlayerBuilderController player1BuilderController = null;
         [SerializeField] private PlayerBuilderController player2BuilderController = null;
         [SerializeField] private List<Transform> playerStartPositions = new();
+        [SerializeField] ScorePanel scorePanel = null;  
         
         GameObject p1;
         GameObject p2;
@@ -70,10 +71,16 @@ namespace GGJ2025
                     StartPlaying();
                     break;
                 case GameState.Playing when currentScoreP1 < targetScore && currentScoreP2 < targetScore:
-                    StartBuilding();
+                    scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {ChangeState();});
+                    gameState = GameState.Score;
                     break;
                 case GameState.Playing:
+                    
+                    scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {Application.Quit();});
                     gameState = GameState.EndScreen;
+                    break;
+                case GameState.Score:
+                    StartBuilding();
                     break;
                 case GameState.Building:
                     StartPlaying();
@@ -118,7 +125,7 @@ namespace GGJ2025
             if (player == playerController1)
             {
                 playerController1.OnDead = null;
-                playerController2.OnScore = null;
+                playerController1.OnScore = null;
                 playerController1 = null;
             }
             
