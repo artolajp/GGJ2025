@@ -47,7 +47,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 258836934200144875, guid: 4e4b70925b4f64735a0a5b55cb7a037f, type: 3}
   emptyCellPrefab: {fileID: 4133055399655149248, guid: 3d188013264dd476fa392bfb3a1e5972, type: 3}
   p1CellPrefab: {fileID: 258836934200144875, guid: 9d2b508e36e3a4b00b8ba5f1c2a2df67, type: 3}
-  displacement: {x: 0, y: 0}
+  displacement: {x: -10, y: -10}
   width: 21
   height: 21
   player1Builder: {fileID: 0}
@@ -102,12 +102,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   placementManager: {fileID: 2812383380099342838}
   cameraController: {fileID: 0}
   currentScore: 0
-  targetScore: 0
-  player1Controller: {fileID: 0}
-  player2Controller: {fileID: 0}
-  player1BuilderController: {fileID: 0}
-  player2BuilderController: {fileID: 0}
-  playerStartPositions: []
+  targetScore: 20
+  player1Controller: {fileID: 8225842242506933910, guid: 1d3fc440f0e6645ed830e6fd934868f8, type: 3}
+  player2Controller: {fileID: 2932892392856533189, guid: 269dbc5b0c6d04260b5ea66bd36234be, type: 3}
+  player1BuilderController: {fileID: 2789293646412376045, guid: 12243b52c9c5b429cab0c2ee924d5ae8, type: 3}
+  player2BuilderController: {fileID: 2789293646412376045, guid: 16610a129bf354fd0b122ca5faa3cca6, type: 3}
+  playerStartPositions:
+  - {fileID: 0}
+  - {fileID: 0}

@@ -627,14 +627,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2812383380099342838, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: displacement.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2812383380099342838, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: displacement.y
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 5085084822407409814, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.129627
@@ -680,33 +672,9 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: targetScore
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 3107770762042862667}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: player1Controller
-      value: 
-      objectReference: {fileID: 8225842242506933910, guid: 1d3fc440f0e6645ed830e6fd934868f8, type: 3}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: player2Controller
-      value: 
-      objectReference: {fileID: 2932892392856533189, guid: 269dbc5b0c6d04260b5ea66bd36234be, type: 3}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: player1BuilderController
-      value: 
-      objectReference: {fileID: 2789293646412376045, guid: 12243b52c9c5b429cab0c2ee924d5ae8, type: 3}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: player2BuilderController
-      value: 
-      objectReference: {fileID: 2789293646412376045, guid: 16610a129bf354fd0b122ca5faa3cca6, type: 3}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: initialBuildings.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: 'initialBuildings.Array.data[0]'
       value: 
@@ -723,10 +691,6 @@ PrefabInstance:
       propertyPath: 'initialBuildings.Array.data[3]'
       value: 
       objectReference: {fileID: 8417368578666870941}
-    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
-      propertyPath: playerStartPositions.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: 'playerStartPositions.Array.data[0]'
       value: 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,13 @@ public class PlayerBuilderController : MonoBehaviour
     private Vector3 targetPosition;
     
     [SerializeField] public Building building;
+    
+    public Action<PlayerBuilderController> OnConfirmed;
+    public Building BuildingInstance
+    {
+        get;
+        set;
+    }
 
     private void OnMovement(InputValue movementValue)
     {
@@ -21,6 +29,11 @@ public class PlayerBuilderController : MonoBehaviour
     private void OnRotate()
     {
         transform.Rotate(0, 90f, 0);
+    }
+
+    private void OnConfirm()
+    {
+        OnConfirmed?.Invoke(this);
     }
 
     private void OnTriggerStay(Collider other)

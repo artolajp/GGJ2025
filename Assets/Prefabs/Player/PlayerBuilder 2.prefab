@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008c0643db6aa704bbf1cd84bfa569b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  building: {fileID: 0}
+  building: {fileID: 2962096000271046848, guid: 4904c2ef86c768f43bb6286fe0071145, type: 3}
 --- !u!114 &1426395334997685218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 989485af-be34-4533-9536-1823fb53c803
+  m_DefaultActionMap: Player_02
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!65 &8723104724844263364

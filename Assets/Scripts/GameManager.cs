@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,10 +22,20 @@ namespace GGJ2025
         [SerializeField] private PlayerBuilderController player2BuilderController = null;
         [SerializeField] private List<Transform> playerStartPositions = new();
         
+        GameObject p1;
+        GameObject p2;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             ChangeState();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ChangeState();
+            }
         }
 
         void InitBuildings()
@@ -40,6 +51,9 @@ namespace GGJ2025
 
         private void ChangeState()
         {
+            if(p1) Destroy(p1);
+            if(p2) Destroy(p2);
+            
             switch (gameState)
             {
                 case GameState.Init:
@@ -63,18 +77,22 @@ namespace GGJ2025
         private void StartBuilding()
         {
             gameState = GameState.Building;
-            var p1BuilderController = Instantiate(player1BuilderController);
-            var p2BuilderController = Instantiate(player2BuilderController);
-            cameraController.player1 = p1BuilderController.gameObject;
-            cameraController.player2 = p2BuilderController.gameObject;
+            var playerBuilderController1 = Instantiate(player1BuilderController);
+            var playerBuilderController2 = Instantiate(player2BuilderController);
+            p1 = playerBuilderController1.gameObject;
+            p2 = playerBuilderController2.gameObject;
+            cameraController.player1 = p1;
+            cameraController.player2 = p2;
+            placementManager.SetPlayers(playerBuilderController1, playerBuilderController2); 
         }
+        
         private void StartPlaying()
         {
 
-            var p1Controller = Instantiate(player1Controller, playerStartPositions[0]);
-            var p2Controller = Instantiate(player2Controller, playerStartPositions[1]);
-            cameraController.player1 = p1Controller.gameObject;
-            cameraController.player2 = p2Controller.gameObject;
+            p1 = Instantiate(player1Controller, playerStartPositions[0]).gameObject;
+            p2 = Instantiate(player2Controller, playerStartPositions[1]).gameObject;
+            cameraController.player1 = p1;
+            cameraController.player2 = p2;
             gameState = GameState.Playing;
         }
     }

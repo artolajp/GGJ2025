@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fb42979c81dc8d74793572db3ae3b2ae, type: 2}
     - target: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
       propertyPath: m_Name
-      value: PlayerBuilder
+      value: PlayerBuilder 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008c0643db6aa704bbf1cd84bfa569b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  building: {fileID: 4005347978659229434, guid: c4bceca1e5810e84e8754b9334901f18, type: 3}
 --- !u!114 &1426395334997685218
 MonoBehaviour:
   m_ObjectHideFlags: 0
