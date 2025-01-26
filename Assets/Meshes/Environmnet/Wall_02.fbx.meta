@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6fc22e74fc2fe0747be1d4cdb79339e6
+guid: 81c01a330ab500b4eb1a895b482e5460
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: PostIts
-    second: {fileID: 2100000, guid: 33cc7643de757c94e90206b1b8dd8a07, type: 2}
+      name: Pared 2
+    second: {fileID: 2100000, guid: bc31150dd7cf2d34680736cb48fa9a4c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
