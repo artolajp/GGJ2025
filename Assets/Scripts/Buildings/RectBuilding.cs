@@ -4,5 +4,5 @@ using UnityEngine;
 public class RectBuilding : Building
 {
     [SerializeField] private GridObject grideable = new GridObject();
-    protected override IGridable Grideable => grideable;
+    public override IGridable Grideable => grideable;
 }

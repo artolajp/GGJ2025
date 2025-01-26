@@ -5,5 +5,5 @@ using UnityEngine;
 public class CustomBuilding : Building
 {
     [SerializeField] private CustomGridObject grideable = new CustomGridObject(new List<Vector2Int>());
-    protected override IGridable Grideable => grideable;
+    public override IGridable Grideable => grideable;
 }

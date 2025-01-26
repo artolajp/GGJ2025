@@ -6,6 +6,8 @@ public class PlayerBuilderController : MonoBehaviour
     private int positionX = 0;
     private int positionY = 0;
     private Vector3 targetPosition;
+    
+    [SerializeField] public Building building;
 
     private void OnMovement(InputValue movementValue)
     {
