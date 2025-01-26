@@ -11,4 +11,9 @@ public class FieldBox : MonoBehaviour
         get { return windForce; }
         set { windForce = value; }
     }
+
+    private void Awake()
+    {
+        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Fan");
+    }
 }

@@ -9,9 +9,14 @@ public class Bullet : MonoBehaviour
 
     private Rigidbody rigidbody;
 
+    [SerializeField]
+    private GameObject particleBullet;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Bullet");
+        Instantiate(particleBullet, transform.position, Quaternion.identity);
     }
 
     private void Start()
@@ -23,11 +28,13 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        Instantiate(particleBullet, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Instantiate(particleBullet, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
