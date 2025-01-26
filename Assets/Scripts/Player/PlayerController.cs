@@ -60,7 +60,7 @@ namespace GGJ2025
             if (other.tag == "HurtBox")
             {
                 // Play sound.
-                FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1.2f, "Sound_ExplodingBalloon_1", "Sound_ExplodingBalloon_2", "Sound_ExplodingBalloon_3");
+                FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
 
                 // Send event to controller.
 
@@ -73,7 +73,8 @@ namespace GGJ2025
             if (other.tag == "WinBox")
             {
                 // Play sound.
-                FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1.2f, "Sound_ExplodingBalloon_1", "Sound_ExplodingBalloon_2", "Sound_ExplodingBalloon_3");
+                FindObjectOfType<AudioController>().AudioPlaySoundVariation(10.5f, 1.5f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
+                FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1f, "Sound_Win");
 
                 // Send event to controller.
 

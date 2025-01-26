@@ -2319,6 +2319,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[8].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[5].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[5].spatialBlend
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[5].maximumDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
