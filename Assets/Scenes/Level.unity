@@ -1772,6 +1772,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2590338200112147578, guid: 919d959a30c31844a80d374446407290, type: 3}
+      propertyPath: windForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7471038903196489510, guid: 919d959a30c31844a80d374446407290, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
