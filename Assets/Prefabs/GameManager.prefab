@@ -44,14 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc78f1cb3df34476b10cdead1bc9fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
   cellPrefab: {fileID: 258836934200144875, guid: 4e4b70925b4f64735a0a5b55cb7a037f, type: 3}
   emptyCellPrefab: {fileID: 4133055399655149248, guid: 3d188013264dd476fa392bfb3a1e5972, type: 3}
   p1CellPrefab: {fileID: 258836934200144875, guid: 9d2b508e36e3a4b00b8ba5f1c2a2df67, type: 3}
-  targetCell: {x: 0, y: 0}
-  targetSize: {x: 1, y: 1}
-  cellShape:
-  - {x: 0, y: 0}
+  displacement: {x: 0, y: 0}
+  width: 21
+  height: 21
+  player1Builder: {fileID: 0}
+  player2Builder: {fileID: 0}
 --- !u!1 &7072680074832920597
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,3 +103,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   placementManager: {fileID: 2812383380099342838}
+  cameraController: {fileID: 0}
+  currentScore: 0
+  targetScore: 0
+  player1Controller: {fileID: 0}
+  player2Controller: {fileID: 0}
+  player1BuilderController: {fileID: 0}
+  player2BuilderController: {fileID: 0}
+  playerStartPositions: []

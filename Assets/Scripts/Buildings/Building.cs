@@ -6,8 +6,10 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     [SerializeField] private bool isBuilding = true;
+    [SerializeField] private Vector2Int position = new Vector2Int(0, 0);
+    [SerializeField] private bool isInitialBuilding = true;
     
-    protected virtual IGridable Grideable { get; }
+    public virtual IGridable Grideable { get; }
 
     public Action onPlaced;
     public int owner;
@@ -24,14 +26,24 @@ public class Building : MonoBehaviour
         if(!CanPlace()) return;
         
         isBuilding = false;
-        
-        gridController.TryAdd((int)transform.position.x,(int) transform.position.z, Grideable);
-        
-        onPlaced?.Invoke();
+        if (isInitialBuilding)
+        {
+            gridController.TryAdd(position.x, position.y, Grideable);
+            onPlaced?.Invoke();
+        }
+        else
+        {
+            gridController.TryAdd((int)transform.position.x,(int) transform.position.z, Grideable);
+            onPlaced?.Invoke();
+        }
     }
 
     public bool CanPlace()
     {
+        if (isInitialBuilding)
+        {
+            return isBuilding && gridController.IsEmpty(position.x, position.y, Grideable);
+        }
         return isBuilding && gridController.IsEmpty((int)transform.position.x,(int) transform.position.z, Grideable);
     }
 }
