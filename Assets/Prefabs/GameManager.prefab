@@ -118,7 +118,7 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   currentScoreP1: 0
   currentScoreP2: 0
-  targetScore: 20
+  targetScore: 10
   player1ControllerPrefab: {fileID: 8225842242506933910, guid: 1d3fc440f0e6645ed830e6fd934868f8, type: 3}
   player2ControllerPrefab: {fileID: 2932892392856533189, guid: 269dbc5b0c6d04260b5ea66bd36234be, type: 3}
   player1BuilderController: {fileID: 2789293646412376045, guid: 12243b52c9c5b429cab0c2ee924d5ae8, type: 3}
@@ -127,3 +127,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   scorePanel: {fileID: 0}
+  timerText: {fileID: 0}
