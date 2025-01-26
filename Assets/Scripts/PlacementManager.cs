@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 namespace GGJ2025
 {
     public class PlacementManager : MonoBehaviour
@@ -21,6 +23,8 @@ namespace GGJ2025
         public GridController<IGridable> Controller => gridController;
         
         private bool isActive = true;
+        
+        public Action OnFinishPlacement;
 
         void Start()
         {
@@ -42,10 +46,13 @@ namespace GGJ2025
             DrawPlayerBuilding(player2Builder);
         }
 
-        public void SetPlayers(PlayerBuilderController player1Builder, PlayerBuilderController player2Builder)
+        public void SetPlayers(PlayerBuilderController player1Builder, PlayerBuilderController player2Builder, List<Building> buildings)
         {
             this.player1Builder = player1Builder;
             this.player2Builder = player2Builder;
+
+            player1Builder.building = buildings[Random.Range(0, buildings.Count)];
+            player2Builder.building = buildings[Random.Range(0, buildings.Count)];
 
             player1Builder.OnConfirmed = OnConfirmedPlayer;
             player2Builder.OnConfirmed = OnConfirmedPlayer;
@@ -72,7 +79,13 @@ namespace GGJ2025
                     player2Builder.OnConfirmed = null;
                     player2Builder = null;
                 }
+                
                 RefreshGrid();
+
+                if (player1Builder == null && player2Builder == null)
+                {
+                    OnFinishPlacement?.Invoke();
+                }
             }
         }
         
@@ -122,6 +135,11 @@ namespace GGJ2025
         public void PauseGrid()
         {
             isActive = false;
+            RefreshGrid();
+        }
+        public void ActiveGrid()
+        {
+            isActive = true;
             RefreshGrid();
         }
     }

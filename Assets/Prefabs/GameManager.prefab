@@ -103,12 +103,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  buildings:
+  - {fileID: 4005347978659229434, guid: c4bceca1e5810e84e8754b9334901f18, type: 3}
+  - {fileID: 2962096000271046848, guid: 4904c2ef86c768f43bb6286fe0071145, type: 3}
+  - {fileID: 711219913736805590, guid: ef8c2b5ad455e1341b414e3a5c0dab56, type: 3}
+  - {fileID: 1714513986341904317, guid: a35db575064c0724ba8184bae951e77f, type: 3}
+  - {fileID: 6115921140769408520, guid: c26623b11b24e0e48a9c6cf0496785bc, type: 3}
+  - {fileID: 6014209280028869117, guid: a62ad374d78f9ec4a9e32fd07bb767f2, type: 3}
+  - {fileID: 248139496391530174, guid: 66c0566bf4bf1504a814f72f5b0eaa89, type: 3}
   placementManager: {fileID: 2812383380099342838}
   cameraController: {fileID: 0}
   currentScore: 0
   targetScore: 20
-  player1Controller: {fileID: 8225842242506933910, guid: 1d3fc440f0e6645ed830e6fd934868f8, type: 3}
-  player2Controller: {fileID: 2932892392856533189, guid: 269dbc5b0c6d04260b5ea66bd36234be, type: 3}
+  player1ControllerPrefab: {fileID: 8225842242506933910, guid: 1d3fc440f0e6645ed830e6fd934868f8, type: 3}
+  player2ControllerPrefab: {fileID: 2932892392856533189, guid: 269dbc5b0c6d04260b5ea66bd36234be, type: 3}
   player1BuilderController: {fileID: 2789293646412376045, guid: 12243b52c9c5b429cab0c2ee924d5ae8, type: 3}
   player2BuilderController: {fileID: 2789293646412376045, guid: 16610a129bf354fd0b122ca5faa3cca6, type: 3}
   playerStartPositions:

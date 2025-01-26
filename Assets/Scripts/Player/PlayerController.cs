@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ namespace GGJ2025
         [Header("Player properties.")]
         [SerializeField]
         private int playerNumber = 0;
+
         [SerializeField]
         private float speed = 10f;
 
@@ -19,6 +21,8 @@ namespace GGJ2025
         private Rigidbody rigidbody;
         private float movement_x;
         private float movement_y;
+        public Action<PlayerController> OnDead;
+        private bool isDead = false;
 
         private void Awake()
         {
@@ -60,7 +64,8 @@ namespace GGJ2025
                 // Send event to controller.
 
                 Instantiate(particleBubblePop, transform.position, Quaternion.identity);
-
+                OnDead?.Invoke(this);
+                
                 Destroy(gameObject);
             }
         }
