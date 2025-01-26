@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   speed: 10
-  particleBubblePop: {fileID: 8152839933418924111, guid: 80af06a1219d9164eaeaf71ca199311f, type: 3}
+  particleBubblePop: {fileID: 8152839933418924111, guid: 8464db1fac2190740ab0aa1c0b3440f4, type: 3}
 --- !u!114 &5920248031784297518
 MonoBehaviour:
   m_ObjectHideFlags: 0
