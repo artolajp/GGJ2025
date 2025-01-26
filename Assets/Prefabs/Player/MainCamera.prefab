@@ -252,7 +252,7 @@ MonoBehaviour:
     maximumDistance: 0
   - clip: {fileID: 8300000, guid: 2890b842825663a46b44fe88d636b8bc, type: 3}
     outputAudioMixerGroup: {fileID: 0}
-    loop: 1
+    loop: 0
     priority: 0
     volume: 1
     pitch: 0
