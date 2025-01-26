@@ -15,7 +15,8 @@ namespace GGJ2025
         [SerializeField] private PlacementManager placementManager = null;
         [SerializeField] private CameraController cameraController = null;
         
-        [SerializeField] private int currentScore = 0;
+        [SerializeField] private int currentScoreP1 = 0;
+        [SerializeField] private int currentScoreP2 = 0;
         [SerializeField] private int targetScore = 0;
         
         [FormerlySerializedAs("player1Controller")]
@@ -68,7 +69,7 @@ namespace GGJ2025
                     InitBuildings();
                     StartPlaying();
                     break;
-                case GameState.Playing when currentScore < targetScore:
+                case GameState.Playing when currentScoreP1 < targetScore && currentScoreP2 < targetScore:
                     StartBuilding();
                     break;
                 case GameState.Playing:
@@ -106,6 +107,9 @@ namespace GGJ2025
 
             playerController1.OnDead = OnPlayerDead;
             playerController2.OnDead = OnPlayerDead;
+            
+            playerController1.OnScore = OnPlayerScored;
+            playerController2.OnScore = OnPlayerScored;
         }
 
         private void OnPlayerDead(PlayerController player)
@@ -114,15 +118,42 @@ namespace GGJ2025
             if (player == playerController1)
             {
                 playerController1.OnDead = null;
+                playerController2.OnScore = null;
                 playerController1 = null;
             }
             
             if (player == playerController2)
             {
                 playerController2.OnDead = null;
+                playerController2.OnScore = null;
                 playerController2 = null;
             }
 
+            
+            if (playerController1 == null && playerController2 == null)
+            {
+                ChangeState();
+            }
+        }
+        
+        private void OnPlayerScored(PlayerController player)
+        {
+            Debug.Log($"OnPlayerScored: {player.name}");
+            if (player == playerController1)
+            {
+                playerController1.OnDead = null;
+                playerController1.OnScore = null;
+                playerController1 = null;
+                currentScoreP1 ++;
+            }
+            
+            if (player == playerController2)
+            {
+                playerController2.OnDead = null;
+                playerController2.OnScore = null;
+                playerController2 = null;
+                currentScoreP2 ++;
+            }
             
             if (playerController1 == null && playerController2 == null)
             {

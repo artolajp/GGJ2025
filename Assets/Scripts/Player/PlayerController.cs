@@ -22,6 +22,7 @@ namespace GGJ2025
         private float movement_x;
         private float movement_y;
         public Action<PlayerController> OnDead;
+        public Action<PlayerController> OnScore;
         private bool isDead = false;
 
         private void Awake()
@@ -65,6 +66,19 @@ namespace GGJ2025
 
                 Instantiate(particleBubblePop, transform.position, Quaternion.identity);
                 OnDead?.Invoke(this);
+                
+                Destroy(gameObject);
+            }
+            
+            if (other.tag == "WinBox")
+            {
+                // Play sound.
+                FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1.2f, "Sound_ExplodingBalloon_1", "Sound_ExplodingBalloon_2", "Sound_ExplodingBalloon_3");
+
+                // Send event to controller.
+
+                Instantiate(particleBubblePop, transform.position, Quaternion.identity);
+                OnScore?.Invoke(this);
                 
                 Destroy(gameObject);
             }
