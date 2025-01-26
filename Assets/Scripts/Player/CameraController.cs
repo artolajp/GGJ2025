@@ -19,13 +19,16 @@ public class CameraController : MonoBehaviour
     private GameObject player_2;
     private GameObject remainingPlayer = null;
 
-    void Awake()
-    {
-        FindObjectOfType<AudioController>().AudioPlaySound("Music_Level_01");
-    }
+    private bool playMusic = true;
 
     void Update()
     {
+        if (playMusic == true)
+        {
+            FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1, "Music_Level_01");
+            playMusic = false;
+        }
+
         Vector3 targetPosition = transform.position;
 
         if (player_1 != null && player_2 != null)
