@@ -65,6 +65,8 @@ namespace GGJ2025
                 grid[x + position.x, y + position.y] = value;
             }
             
+            Debug.Log("Adding new object to the grid");
+            
             return true;
         }
         

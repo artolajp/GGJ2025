@@ -18,7 +18,10 @@ namespace GGJ2025
         [SerializeField] Vector2Int targetCell;
         [SerializeField] Vector2Int targetSize = Vector2Int.one;
         [SerializeField] List<Vector2Int> cellShape = new List<Vector2Int>(){Vector2Int.zero};
+        public GridController<IGridable> Controller => gridController;
         
+        private bool isActive = true;
+
         void Start()
         {
             gridController = new GridController<IGridable>(16, 20);
@@ -32,12 +35,9 @@ namespace GGJ2025
             
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                gridController.TryAdd(targetCell.x, targetCell.y, gridObject);
+                Controller.TryAdd(targetCell.x, targetCell.y, gridObject);
                 RefreshGrid();
             }
-
-            var playerPosition = playerController.transform.position;
-            targetCell = new Vector2Int((int)playerPosition.x, (int)playerPosition.z);
             
             foreach (var cell in tempCells)
             {
@@ -45,8 +45,13 @@ namespace GGJ2025
             }
             tempCells.Clear();
 
+            if(!isActive)return;
+            
+            var playerPosition = playerController.transform.position;
+            targetCell = new Vector2Int((int)playerPosition.x, (int)playerPosition.z);
+            
             var targetPrefab = p1CellPrefab;
-            if (!gridController.IsEmpty(targetCell.x, targetCell.y, gridObject))
+            if (!Controller.IsEmpty(targetCell.x, targetCell.y, gridObject))
             {
                 targetPrefab = cellPrefab;
             }
@@ -57,17 +62,18 @@ namespace GGJ2025
             }
         }
         
-        private void RefreshGrid()
+        public void RefreshGrid()
         {
-
             foreach (var cell in cells)
             {
                 Destroy(cell.gameObject);
             }
             cells.Clear();
             
-            var empties = gridController.GetEmpties();
-            var occupied = gridController.GetOccupied();
+            if(!isActive)return;
+                
+            var empties = Controller.GetEmpties();
+            var occupied = Controller.GetOccupied();
 
             foreach (var empty in empties)
             {
@@ -78,8 +84,12 @@ namespace GGJ2025
             {
                 cells.Add(Instantiate(cellPrefab, new Vector3(cell.x, 0.1f, cell.y), Quaternion.identity , transform));
             }
-            
-            
+        }
+        
+        public void PauseGrid()
+        {
+            isActive = false;
+            RefreshGrid();
         }
     }
 
