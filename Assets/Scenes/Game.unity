@@ -1893,6 +1893,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3107770762042862667}
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: buildings.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: 'buildings.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1727832600585751304, guid: a62ad374d78f9ec4a9e32fd07bb767f2, type: 3}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: 'buildings.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1201554336349127280, guid: 66c0566bf4bf1504a814f72f5b0eaa89, type: 3}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: 'buildings.Array.data[6]'
+      value: 
+      objectReference: {fileID: 3677369812729125493, guid: e1bd938f5aebc45489f11e2075edc9bd, type: 3}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: 'buildings.Array.data[7]'
+      value: 
+      objectReference: {fileID: 4936986701410980234, guid: dcad5d18fada6164dbba7d942c75b751, type: 3}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: 'buildings.Array.data[8]'
+      value: 
+      objectReference: {fileID: 6533659766954657716, guid: c26623b11b24e0e48a9c6cf0496785bc, type: 3}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: 'buildings.Array.data[9]'
+      value: 
+      objectReference: {fileID: 1420995974974340594, guid: d5c0b102918abb54ca71cf9e26db8361, type: 3}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: 'initialBuildings.Array.data[0]'
       value: 
       objectReference: {fileID: 5980469275890641695}
