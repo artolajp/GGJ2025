@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace GGJ2025
@@ -41,10 +42,10 @@ namespace GGJ2025
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ChangeState();
-            }
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            //     ChangeState();
+            // }
         }
 
         void InitBuildings()
@@ -75,8 +76,7 @@ namespace GGJ2025
                     gameState = GameState.Score;
                     break;
                 case GameState.Playing:
-                    
-                    scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {Application.Quit();});
+                    scorePanel.Show(currentScoreP1, currentScoreP2, targetScore, () => { Application.Quit(); });
                     gameState = GameState.EndScreen;
                     break;
                 case GameState.Score:
@@ -139,6 +139,7 @@ namespace GGJ2025
             
             if (playerController1 == null && playerController2 == null)
             {
+                targetScore--;
                 ChangeState();
             }
         }
