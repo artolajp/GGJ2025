@@ -114,7 +114,7 @@ public partial class @InputActions_Player_01: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""aa51c863-cbe0-43c2-acdd-626334bc8072"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -125,7 +125,7 @@ public partial class @InputActions_Player_01: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""ce8d9794-45cd-4c8e-993f-c258a3313f68"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
