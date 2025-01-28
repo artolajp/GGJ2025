@@ -62,9 +62,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bcd71e3fb0b003743b994cac3304916b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3640366084288199797}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bcd71e3fb0b003743b994cac3304916b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7867150248459619816}
   m_SourcePrefab: {fileID: 100100000, guid: bcd71e3fb0b003743b994cac3304916b, type: 3}
 --- !u!1 &600008280764557132 stripped
 GameObject:
@@ -114,25 +111,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7867150248459619816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600008280764557132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8404af3f8df6f4ab5befcfc780e54cd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBuilding: 1
-  owner: 0
-  grideable:
-    height: 4
-    width: 4

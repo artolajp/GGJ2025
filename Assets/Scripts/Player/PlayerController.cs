@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     // Properties.
     [Header("Player properties.")]
-    [SerializeField] private int playerNumber = 0;
+    [SerializeField] public int playerNumber = 0;
     [SerializeField] private float speed = 10f;
     [SerializeField] private GameObject particleBubblePop;
 
@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidbody;
     private float movement_x;
     private float movement_y;
-    public Action<PlayerController> OnDead;
-    public Action<PlayerController> OnScore;
 
     private void Awake()
     {
@@ -31,16 +29,6 @@ public class PlayerController : MonoBehaviour
         movement_y = movementVector.y;
     }
 
-    private void OnRotate()
-    {
-        Debug.Log("Pressed!");
-    }
-        
-    private void OnConfirm()
-    {
-        Debug.Log("Confirmed!");
-    }
-
     private void FixedUpdate()
     {
         Vector3 movement = new Vector3(movement_x, 0.0f, movement_y);
@@ -50,23 +38,25 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
-
         if (other.tag == "HurtBox")
         {
+            FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
+
             Instantiate(particleBubblePop, transform.position, Quaternion.identity);
 
-            OnDead?.Invoke(this);
+            Actions.PlayerDeath?.Invoke(this);
             Destroy(gameObject);
         }
-            
+
         if (other.tag == "WinBox")
         {
+            FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
+
             FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1, "Sound_Win");
             
             Instantiate(particleBubblePop, transform.position, Quaternion.identity);
-            
-            OnScore?.Invoke(this);
+
+            Actions.PlayerScored?.Invoke(this);
             Destroy(gameObject);
         }
     }

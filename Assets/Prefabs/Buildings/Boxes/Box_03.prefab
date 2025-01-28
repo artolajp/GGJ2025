@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 397689610276213123}
-  - component: {fileID: 1201554336349127280}
   m_Layer: 0
   m_Name: Box_03
   m_TagString: Untagged
@@ -34,28 +33,6 @@ Transform:
   - {fileID: 2904524980821212214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1201554336349127280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4342951297293819232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b1a100b2c8f4f7cbf851049253d273, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBuilding: 1
-  position: {x: 0, y: 0}
-  isInitialBuilding: 1
-  owner: 0
-  grideable:
-    positions:
-    - {x: 1, y: 0}
-    - {x: 1, y: 1}
-    - {x: 1, y: 2}
-    - {x: 0, y: 2}
 --- !u!1 &7139493129649316360
 GameObject:
   m_ObjectHideFlags: 0

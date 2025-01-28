@@ -172,6 +172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a67876b1d214f24c8880243bca896ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 0
+  playerNumber: 1
   speed: 10
   particleBubblePop: {fileID: 8152839933418924111, guid: 80af06a1219d9164eaeaf71ca199311f, type: 3}

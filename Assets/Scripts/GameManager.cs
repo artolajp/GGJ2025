@@ -17,13 +17,12 @@ namespace GGJ2025
         [SerializeField] private int score_02 = 0;
         [SerializeField] private int targetScore = 0;
         
-        [SerializeField] private PlayerController player_01 = null;
-        [SerializeField] private PlayerController player_02 = null;
-        [SerializeField] private PlayerBuilderController playerBuilder_01 = null;
-        [SerializeField] private PlayerBuilderController playerBuilder_02 = null;
+        [SerializeField] private GameObject[] players;
         [SerializeField] private List<Transform> playerStartPositions = new();
-        private GameObject getPlayer_01;
-        private GameObject getPlayer_02;
+        private GameObject player_01;
+        private GameObject player_02;
+
+        [SerializeField] private GameObject cells;
 
 
         [SerializeField] ScorePanel scorePanel = null;
@@ -31,7 +30,7 @@ namespace GGJ2025
         private float currentTime = 0;
         private float Timer = 15000;
         [SerializeField] private TMP_Text timerText;
-        
+
         void Start()
         {
             ChangeState();
@@ -57,14 +56,14 @@ namespace GGJ2025
 
         private void ChangeState()
         {
-            if (getPlayer_01 != null)
+            if (player_01 != null)
             {
-                Destroy(getPlayer_01);
+                Destroy(player_01);
             }
 
-            if (getPlayer_02 != null)
+            if (player_02 != null)
             {
-                Destroy(getPlayer_02);
+                Destroy(player_02);
             }
 
             currentTime = Timer;
@@ -128,49 +127,49 @@ namespace GGJ2025
             }
         }
 
-        private void StartBuilding()
-        {
-            gameState = GameState.Building;
-
-            getPlayer_01 = Instantiate(playerBuilder_01).gameObject;
-            getPlayer_02 = Instantiate(playerBuilder_02).gameObject;
-            cameraController.player_01 = getPlayer_01;
-            cameraController.player_02 = getPlayer_02;
-        }
-
         private void StartPlaying()
         {
             gameState = GameState.Playing;
 
-            getPlayer_01 = Instantiate(player_01, playerStartPositions[0]).gameObject;
-            getPlayer_02 = Instantiate(player_02, playerStartPositions[1]).gameObject;
-            cameraController.player_01 = getPlayer_01;
-            cameraController.player_02 = getPlayer_02;
+            player_01 = Instantiate(players[0], playerStartPositions[0].transform.position, Quaternion.identity);
+            player_02 = Instantiate(players[1], playerStartPositions[1].transform.position, Quaternion.identity);
+            cameraController.player_01 = player_01;
+            cameraController.player_02 = player_02;
 
-            player_01.OnDead = OnPlayerDead;
-            player_01.OnScore = OnPlayerScored;
-            player_02.OnDead = OnPlayerDead;
-            player_02.OnScore = OnPlayerScored;
+            Actions.PlayerDeath += OnPlayerDead;
+            Actions.PlayerScored += OnPlayerScored;
         }
 
-        private void OnPlayerDead(PlayerController player)
+        private void StartBuilding()
         {
-            if (player == player_01)
+            gameState = GameState.Building;
+
+            player_01 = Instantiate(players[2]);
+            player_02 = Instantiate(players[3]);
+            cameraController.player_01 = player_01;
+            cameraController.player_02 = player_02;
+            cells.SetActive(true);
+
+            Actions.PlayerBuilded += OnPlayerBuilded;
+        }
+
+        public void OnPlayerDead(PlayerController player)
+        {
+            if (player.playerNumber == 0)
             {
-                player_01.OnDead = null;
-                player_01.OnScore = null;
                 player_01 = null;
             }
             
-            if (player == player_02)
+            if (player.playerNumber == 1)
             {
-                player_02.OnDead = null;
-                player_02.OnScore = null;
                 player_02 = null;
             }
 
             if (player_01 == null && player_02 == null)
             {
+                Actions.PlayerDeath -= OnPlayerDead;
+                Actions.PlayerDeath -= OnPlayerScored;
+
                 targetScore--;
                 currentTime = 1;
             }
@@ -178,24 +177,45 @@ namespace GGJ2025
 
         private void OnPlayerScored(PlayerController player)
         {
-            if (player == player_01)
+            if (player.playerNumber == 0)
             {
-                player_01.OnDead = null;
-                player_01.OnScore = null;
                 player_01 = null;
                 score_01++;
             }
             
-            if (player == player_02)
+            if (player.playerNumber == 1)
             {
-                player_02.OnDead = null;
-                player_02.OnScore = null;
                 player_02 = null;
                 score_02++;
             }
             
             if (player_01 == null && player_02 == null)
             {
+                Actions.PlayerDeath -= OnPlayerDead;
+                Actions.PlayerDeath -= OnPlayerScored;
+
+                currentTime = 1;
+            }
+        }
+
+        public void OnPlayerBuilded(PlayerBuilderController player)
+        {
+            if (player.playerNumber == 0)
+            {
+                player_01 = null;
+            }
+
+            if (player.playerNumber == 1)
+            {
+                player_02 = null;
+            }
+
+            if (player_01 == null && player_02 == null)
+            {
+                Actions.PlayerBuilded -= OnPlayerBuilded;
+
+                cells.SetActive(false);
+
                 currentTime = 1;
             }
         }

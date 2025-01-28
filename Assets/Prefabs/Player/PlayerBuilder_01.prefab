@@ -146,4 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008c0643db6aa704bbf1cd84bfa569b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildings: []
+  playerNumber: 0
+  buildings:
+  - {fileID: 758480396724215067, guid: c26623b11b24e0e48a9c6cf0496785bc, type: 3}
+  - {fileID: 1653705599048530223, guid: a62ad374d78f9ec4a9e32fd07bb767f2, type: 3}
+  - {fileID: 4342951297293819232, guid: 66c0566bf4bf1504a814f72f5b0eaa89, type: 3}
+  - {fileID: 8138334414419470722, guid: e1bd938f5aebc45489f11e2075edc9bd, type: 3}
+  - {fileID: 1615087869539073422, guid: dcad5d18fada6164dbba7d942c75b751, type: 3}

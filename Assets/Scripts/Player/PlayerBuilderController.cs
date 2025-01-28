@@ -4,15 +4,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerBuilderController : MonoBehaviour
 {
-    private int positionX = 0;
-    private int positionY = 0;
+    [SerializeField] public int playerNumber = 0;
+
     private Vector3 targetPosition;
     
     [SerializeField] public GameObject[] buildings;
     private GameObject buildingInstance;
-    
-    public Action<PlayerBuilderController> OnConfirmed;
-    public Action<PlayerBuilderController> OnDead;
 
     private int maximumGridSteps = 10;
 
@@ -34,14 +31,17 @@ public class PlayerBuilderController : MonoBehaviour
     private void OnRotate()
     {
         FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
+
         transform.Rotate(0, 90f, 0);
     }
 
     private void OnConfirm()
     {
         FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
-        OnConfirmed?.Invoke(this);
-        OnDead?.Invoke(this);
+
+        Actions.PlayerBuilded?.Invoke(this);
+
+        transform.DetachChildren();
         Destroy(gameObject);
     }
 
