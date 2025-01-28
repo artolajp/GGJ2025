@@ -8,6 +8,7 @@ TagManager:
   - HurtBox
   - FieldBox
   - WinBox
+  - SingleCell
   layers:
   - Default
   - TransparentFX

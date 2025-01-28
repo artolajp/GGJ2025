@@ -27,8 +27,10 @@ namespace GGJ2025
         [SerializeField] private PlayerBuilderController player1BuilderController = null;
         [SerializeField] private PlayerBuilderController player2BuilderController = null;
         [SerializeField] private List<Transform> playerStartPositions = new();
-        [SerializeField] ScorePanel scorePanel = null;  
-        
+        [SerializeField] ScorePanel scorePanel = null;
+
+        [SerializeField] private GameObject cells = null;
+
         GameObject p1;
         GameObject p2;
         
@@ -36,7 +38,7 @@ namespace GGJ2025
         PlayerController playerController2;
 
         private float currentTime = 0;
-        private float Timer = 15;
+        private float Timer = 15000;
         
         [SerializeField] private TMP_Text timerText;
         
@@ -54,12 +56,12 @@ namespace GGJ2025
         private void Update()
         {
             currentTime -= Time.deltaTime;
-            if (currentTime < 0)
+            if (currentTime < 0 || Input.GetKeyDown("space"))
             {
                 ChangeState();
             }
             
-            timerText.text = currentTime.ToString("0.00");
+            timerText.text = currentTime.ToString("00s");
         }
 
         void InitBuildings()
@@ -77,18 +79,18 @@ namespace GGJ2025
         {
             if(p1) Destroy(p1);
             if(p2) Destroy(p2);
-            placementManager.PauseGrid();
+            //placementManager.PauseGrid();
             currentTime = Timer;
             
             switch (gameState)
             {
                 case GameState.Init:
-                    InitBuildings();
+                    //InitBuildings();
                     StartPlaying();
                     break;
                 case GameState.Playing when currentScoreP1 < targetScore && currentScoreP2 < targetScore:
                     scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {});
-                    currentTime = 4f;
+                    currentTime = 2f;
                     gameState = GameState.Score;
                     break;
                 case GameState.Playing:
@@ -122,13 +124,17 @@ namespace GGJ2025
             p2 = playerBuilderController2.gameObject;
             cameraController.player1 = p1;
             cameraController.player2 = p2;
+            cells.SetActive(true);
+            /*
             placementManager.SetPlayers(playerBuilderController1, playerBuilderController2, buildings);
             placementManager.OnFinishPlacement = ChangeState;
             placementManager.ActiveGrid();
+            */
         }
-        
+
         private void StartPlaying()
         {
+            cells.SetActive(false);
             playerController1 = Instantiate(player1ControllerPrefab, playerStartPositions[0]);
             playerController2 = Instantiate(player2ControllerPrefab, playerStartPositions[1]);
             cameraController.player1 = p1 = playerController1.gameObject;
@@ -163,10 +169,11 @@ namespace GGJ2025
             if (playerController1 == null && playerController2 == null)
             {
                 targetScore--;
-                ChangeState();
+                currentTime = 1;
+                //ChangeState();
             }
         }
-        
+
         private void OnPlayerScored(PlayerController player)
         {
             Debug.Log($"OnPlayerScored: {player.name}");
@@ -188,7 +195,8 @@ namespace GGJ2025
             
             if (playerController1 == null && playerController2 == null)
             {
-                ChangeState();
+                currentTime = 1;
+                //ChangeState();
             }
         }
     }
