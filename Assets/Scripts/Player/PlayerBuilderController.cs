@@ -8,18 +8,18 @@ public class PlayerBuilderController : MonoBehaviour
     private int positionY = 0;
     private Vector3 targetPosition;
     
-    [SerializeField] public Building building;
+    [SerializeField] public GameObject[] buildings;
+    private GameObject buildingInstance;
     
     public Action<PlayerBuilderController> OnConfirmed;
     public Action<PlayerBuilderController> OnDead;
 
-    public Building BuildingInstance
-    {
-        get;
-        set;
-    }
-
     private int maximumGridSteps = 10;
+
+    private void Awake()
+    {
+        buildingInstance = Instantiate(buildings[UnityEngine.Random.Range(0, buildings.Length)], this.transform);
+    }
 
     private void OnMovement(InputValue movementValue)
     {

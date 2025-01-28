@@ -8,38 +8,28 @@ namespace GGJ2025
 {
     public class GameManager : MonoBehaviour
     {
-        enum GameState {Init ,Playing, Building, Score, EndScreen, StartScreen}
+        enum GameState {Start ,Playing, Building, Score, EndScreen, StartScreen}
         
-        [SerializeField] GameState gameState = GameState.Init;
-        [SerializeField] private List<Building> initialBuildings = new List<Building>();
-        [SerializeField] private List<Building> buildings = new List<Building>();
-        [SerializeField] private PlacementManager placementManager = null;
+        [SerializeField] GameState gameState = GameState.Start;
         [SerializeField] private CameraController cameraController = null;
         
-        [SerializeField] private int currentScoreP1 = 0;
-        [SerializeField] private int currentScoreP2 = 0;
+        [SerializeField] private int score_01 = 0;
+        [SerializeField] private int score_02 = 0;
         [SerializeField] private int targetScore = 0;
         
-        [FormerlySerializedAs("player1Controller")]
-        [SerializeField] private PlayerController player1ControllerPrefab = null;
-        [FormerlySerializedAs("player2Controller")]
-        [SerializeField] private PlayerController player2ControllerPrefab = null;
-        [SerializeField] private PlayerBuilderController player1BuilderController = null;
-        [SerializeField] private PlayerBuilderController player2BuilderController = null;
+        [SerializeField] private PlayerController player_01 = null;
+        [SerializeField] private PlayerController player_02 = null;
+        [SerializeField] private PlayerBuilderController playerBuilder_01 = null;
+        [SerializeField] private PlayerBuilderController playerBuilder_02 = null;
         [SerializeField] private List<Transform> playerStartPositions = new();
+        private GameObject getPlayer_01;
+        private GameObject getPlayer_02;
+
+
         [SerializeField] ScorePanel scorePanel = null;
-
-        [SerializeField] private GameObject cells = null;
-
-        GameObject p1;
-        GameObject p2;
-        
-        PlayerController playerController1;
-        PlayerController playerController2;
 
         private float currentTime = 0;
         private float Timer = 15000;
-        
         [SerializeField] private TMP_Text timerText;
         
         void Start()
@@ -56,6 +46,7 @@ namespace GGJ2025
         private void Update()
         {
             currentTime -= Time.deltaTime;
+
             if (currentTime < 0 || Input.GetKeyDown("space"))
             {
                 ChangeState();
@@ -64,141 +55,149 @@ namespace GGJ2025
             timerText.text = currentTime.ToString("00s");
         }
 
-        void InitBuildings()
-        {
-            foreach (var building in initialBuildings)
-            {
-                building.Initialize(placementManager.Controller, 0);
-                building.ConfirmPlacement();
-            }
-
-            placementManager.RefreshGrid();
-        }
-
         private void ChangeState()
         {
-            if(p1) Destroy(p1);
-            if(p2) Destroy(p2);
-            //placementManager.PauseGrid();
+            if (getPlayer_01 != null)
+            {
+                Destroy(getPlayer_01);
+            }
+
+            if (getPlayer_02 != null)
+            {
+                Destroy(getPlayer_02);
+            }
+
             currentTime = Timer;
             
             switch (gameState)
             {
-                case GameState.Init:
-                    //InitBuildings();
+                case GameState.Start:
+                {
                     StartPlaying();
-                    break;
-                case GameState.Playing when currentScoreP1 < targetScore && currentScoreP2 < targetScore:
-                    scorePanel.Show(currentScoreP1,currentScoreP2, targetScore, () => {});
+                }
+                break;
+
+                case GameState.Playing when score_01 < targetScore && score_02 < targetScore:
+                {
+                    scorePanel.Show(score_01, score_02, targetScore, () => {});
                     currentTime = 2f;
                     gameState = GameState.Score;
-                    break;
+                }
+                break;
+
                 case GameState.Playing:
-                    scorePanel.Show(currentScoreP1, currentScoreP2, targetScore, () =>
+                {
+                    scorePanel.Show(score_01, score_02, targetScore, () =>
                     {
-                        if(currentScoreP1>currentScoreP2) SceneManager.LoadScene("WinGreen");
-                        else if (currentScoreP2>currentScoreP1) SceneManager.LoadScene("WinRed");
-                        else SceneManager.LoadScene("Menu");
+                        if (score_01 > score_02)
+                        {
+                            SceneManager.LoadScene("WinGreen");
+                        }
+                        else if (score_02 > score_01)
+                        {
+                            SceneManager.LoadScene("WinRed");
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene("Menu");
+                        }
                     });
+
                     gameState = GameState.EndScreen;
-                    break;
+                }
+                break;
+
                 case GameState.Score:
-                    
+                {
                     scorePanel.Hide();
                     StartBuilding();
-                    break;
+                }
+                break;
+
                 case GameState.Building:
+                {
                     StartPlaying();
-                    break;
+                }
+                break;
+
                 default:
+                {
                     gameState = GameState.EndScreen;
-                    break;
+                }
+                break;
             }
         }
+
         private void StartBuilding()
         {
             gameState = GameState.Building;
-            var playerBuilderController1 = Instantiate(player1BuilderController);
-            var playerBuilderController2 = Instantiate(player2BuilderController);
-            p1 = playerBuilderController1.gameObject;
-            p2 = playerBuilderController2.gameObject;
-            cameraController.player1 = p1;
-            cameraController.player2 = p2;
-            cells.SetActive(true);
-            /*
-            placementManager.SetPlayers(playerBuilderController1, playerBuilderController2, buildings);
-            placementManager.OnFinishPlacement = ChangeState;
-            placementManager.ActiveGrid();
-            */
+
+            getPlayer_01 = Instantiate(playerBuilder_01).gameObject;
+            getPlayer_02 = Instantiate(playerBuilder_02).gameObject;
+            cameraController.player_01 = getPlayer_01;
+            cameraController.player_02 = getPlayer_02;
         }
 
         private void StartPlaying()
         {
-            cells.SetActive(false);
-            playerController1 = Instantiate(player1ControllerPrefab, playerStartPositions[0]);
-            playerController2 = Instantiate(player2ControllerPrefab, playerStartPositions[1]);
-            cameraController.player1 = p1 = playerController1.gameObject;
-            cameraController.player2 = p2 = playerController2.gameObject;
             gameState = GameState.Playing;
 
-            playerController1.OnDead = OnPlayerDead;
-            playerController2.OnDead = OnPlayerDead;
-            
-            playerController1.OnScore = OnPlayerScored;
-            playerController2.OnScore = OnPlayerScored;
+            getPlayer_01 = Instantiate(player_01, playerStartPositions[0]).gameObject;
+            getPlayer_02 = Instantiate(player_02, playerStartPositions[1]).gameObject;
+            cameraController.player_01 = getPlayer_01;
+            cameraController.player_02 = getPlayer_02;
+
+            player_01.OnDead = OnPlayerDead;
+            player_01.OnScore = OnPlayerScored;
+            player_02.OnDead = OnPlayerDead;
+            player_02.OnScore = OnPlayerScored;
         }
 
         private void OnPlayerDead(PlayerController player)
         {
-            Debug.Log($"OnPlayerDead: {player.name}");
-            if (player == playerController1)
+            if (player == player_01)
             {
-                playerController1.OnDead = null;
-                playerController1.OnScore = null;
-                playerController1 = null;
+                player_01.OnDead = null;
+                player_01.OnScore = null;
+                player_01 = null;
             }
             
-            if (player == playerController2)
+            if (player == player_02)
             {
-                playerController2.OnDead = null;
-                playerController2.OnScore = null;
-                playerController2 = null;
+                player_02.OnDead = null;
+                player_02.OnScore = null;
+                player_02 = null;
             }
 
-            
-            if (playerController1 == null && playerController2 == null)
+            if (player_01 == null && player_02 == null)
             {
                 targetScore--;
                 currentTime = 1;
-                //ChangeState();
             }
         }
 
         private void OnPlayerScored(PlayerController player)
         {
-            Debug.Log($"OnPlayerScored: {player.name}");
-            if (player == playerController1)
+            if (player == player_01)
             {
-                playerController1.OnDead = null;
-                playerController1.OnScore = null;
-                playerController1 = null;
-                currentScoreP1 ++;
+                player_01.OnDead = null;
+                player_01.OnScore = null;
+                player_01 = null;
+                score_01++;
             }
             
-            if (player == playerController2)
+            if (player == player_02)
             {
-                playerController2.OnDead = null;
-                playerController2.OnScore = null;
-                playerController2 = null;
-                currentScoreP2 ++;
+                player_02.OnDead = null;
+                player_02.OnScore = null;
+                player_02 = null;
+                score_02++;
             }
             
-            if (playerController1 == null && playerController2 == null)
+            if (player_01 == null && player_02 == null)
             {
                 currentTime = 1;
-                //ChangeState();
             }
         }
     }
-
 }

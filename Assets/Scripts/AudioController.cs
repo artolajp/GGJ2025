@@ -4,14 +4,12 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
-    //Declare variables:
     public static AudioController instance;
     public Audio[] sounds;
 
-    //Events:
     void Awake()
     {
-        //Make persistant.
+        // Make persistant.
         if (instance == null)
         {
             instance = this;
@@ -25,7 +23,7 @@ public class AudioController : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        //Asing audio sources.
+        // Asing audio sources.
         foreach (Audio sound in sounds)
         {
             sound.source = gameObject.AddComponent<AudioSource>();
@@ -41,7 +39,6 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    //Functions:
     public void AudioPlaySound(params string[] names)
     {
         int randomSoundIndex = UnityEngine.Random.Range(0, names.Length);
@@ -127,7 +124,6 @@ public class AudioController : MonoBehaviour
 [System.Serializable]
 public class Audio
 {
-    //Declare variables:
     [System.NonSerialized] public AudioSource source;
     public AudioClip clip;
     public AudioMixerGroup outputAudioMixerGroup;

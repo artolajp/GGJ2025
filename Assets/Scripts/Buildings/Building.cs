@@ -1,49 +1,26 @@
 using System;
 using System.Collections.Generic;
-using GGJ2025;
 using UnityEngine;
+using GGJ2025;
 
 public class Building : MonoBehaviour
 {
-    [SerializeField] private bool isBuilding = true;
-    [SerializeField] private Vector2Int position = new Vector2Int(0, 0);
-    [SerializeField] private bool isInitialBuilding = true;
-    
-    public virtual IGridable Grideable { get; }
+    private bool canBePlaced = true;
 
-    public Action onPlaced;
-    public int owner;
-    public GridController<IGridable> gridController;
-
-    public void Initialize(GridController<IGridable> gridController, int owner)
+    void OnTriggerEnter(Collider other)
     {
-        this.gridController = gridController;
-        this.owner = owner;
-    }
-
-    public void ConfirmPlacement()
-    {
-        if(!CanPlace()) return;
-        
-        isBuilding = false;
-        if (isInitialBuilding)
+        if (other.tag == "HitBox")
         {
-            gridController.TryAdd(position.x, position.y, Grideable);
-            onPlaced?.Invoke();
+            canBePlaced = true;
         }
         else
         {
-            gridController.TryAdd((int)transform.position.x,(int) transform.position.z, Grideable);
-            onPlaced?.Invoke();
+            canBePlaced = false;
         }
     }
 
-    public bool CanPlace()
+    public bool CanBePlaced()
     {
-        if (isInitialBuilding)
-        {
-            return isBuilding && gridController.IsEmpty(position.x, position.y, Grideable);
-        }
-        return isBuilding && gridController.IsEmpty((int)transform.position.x,(int) transform.position.z, Grideable);
+        return canBePlaced;
     }
 }
