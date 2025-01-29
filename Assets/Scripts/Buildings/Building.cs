@@ -1,25 +1,31 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using GGJ2025;
 
 public class Building : MonoBehaviour
 {
-    private bool canBePlaced = true;
+    private int canBePlaced = 1;
+    private int collisions = 0;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "HitBox")
+        collisions++;
+
+        if (other.tag == "Building" || other.tag == "HitBox")
         {
-            canBePlaced = true;
-        }
-        else
-        {
-            canBePlaced = false;
+            canBePlaced = 2;
         }
     }
 
-    public bool CanBePlaced()
+    void OnTriggerExit(Collider other)
+    {
+        collisions--;
+
+        if (collisions == 0)
+        {
+            canBePlaced = 1;
+        }
+    }
+
+    public int CanBePlaced()
     {
         return canBePlaced;
     }

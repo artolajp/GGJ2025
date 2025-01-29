@@ -5,42 +5,35 @@ public class SingleCell : MonoBehaviour
     [SerializeField] private MeshFilter getMeshFilter;
     [SerializeField] private Mesh[] meshes;
 
-    private int gridMesh = 0;
     private int collisions = 0;
 
     void OnTriggerEnter(Collider other)
     {
-        collisions += 1;
+        collisions++;
+
+        if (other.tag == "HitBox" || other.tag == "Respawn" || other.tag == "Finish")
+        {
+            ChangeMesh(2);
+        }
 
         if (other.tag == "Building")
         {
-            if (other.GetComponent<Building>().CanBePlaced())
-            {
-                ChangeMesh(1);
-            }
-            else
-            {
-                ChangeMesh(2);
-            }
+            ChangeMesh(other.GetComponent<Building>().CanBePlaced());
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        collisions -= 1;
+        collisions--;
 
         if (collisions == 0)
         {
-            if (gridMesh != 0)
-            {
-                ChangeMesh(0);
-            }
+            ChangeMesh(0);
         }
     }
 
     public void ChangeMesh(int setMesh = 0)
     {
-        gridMesh = setMesh;
-        getMeshFilter.mesh = meshes[gridMesh];
+        getMeshFilter.mesh = meshes[setMesh];
     }
 }
