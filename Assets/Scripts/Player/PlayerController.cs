@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
-using GGJ2025;
 
 public class PlayerController : MonoBehaviour
 {
