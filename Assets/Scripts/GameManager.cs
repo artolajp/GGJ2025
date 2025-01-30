@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameState gameState = GameState.Start;
     [SerializeField] private CameraController cameraController = null;
 
-    [SerializeField] private int score_01 = 0;
-    [SerializeField] private int score_02 = 0;
-    [SerializeField] private int targetScore = 0;
+    [SerializeField] private int score_01 = 2;
+    [SerializeField] private int score_02 = 2;
+    [SerializeField] private int targetScore = 40;
     [SerializeField] ScorePanel scorePanel = null;
     [SerializeField] private GameObject cells;
 
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
             Actions.PlayerDeath -= OnPlayerDead;
             Actions.PlayerDeath -= OnPlayerScored;
 
-            targetScore--;
+            //targetScore--;
             currentTime = 1;
         }
     }
@@ -174,13 +174,13 @@ public class GameManager : MonoBehaviour
         if (player.playerNumber == 0)
         {
             player_01 = null;
-            score_01++;
+            score_01 += 1;
         }
 
         if (player.playerNumber == 1)
         {
             player_02 = null;
-            score_02++;
+            score_02 += 1;
         }
 
         if (player_01 == null && player_02 == null)

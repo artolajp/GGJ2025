@@ -46,9 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 0
   cameraController: {fileID: 0}
-  score_01: 0
-  score_02: 0
-  targetScore: 10
+  score_01: 2
+  score_02: 2
+  targetScore: 40
+  scorePanel: {fileID: 0}
+  cells: {fileID: 0}
   players:
   - {fileID: 7642951554395257547, guid: 1d3fc440f0e6645ed830e6fd934868f8, type: 3}
   - {fileID: 3711712788167334432, guid: 269dbc5b0c6d04260b5ea66bd36234be, type: 3}
@@ -57,6 +59,4 @@ MonoBehaviour:
   playerStartPositions:
   - {fileID: 0}
   - {fileID: 0}
-  cells: {fileID: 0}
-  scorePanel: {fileID: 0}
   timerText: {fileID: 0}
