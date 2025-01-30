@@ -14,6 +14,6 @@ public class FieldBox : MonoBehaviour
 
     private void Awake()
     {
-        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Fan");
+        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Fan");
     }
 }

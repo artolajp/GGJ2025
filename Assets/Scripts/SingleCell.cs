@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SingleCell : MonoBehaviour
 {
@@ -10,15 +11,13 @@ public class SingleCell : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         collisions++;
+    }
 
-        if (other.tag == "HitBox" || other.tag == "Respawn" || other.tag == "Finish")
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "BuildBox")
         {
-            ChangeMesh(2);
-        }
-
-        if (other.tag == "Building")
-        {
-            ChangeMesh(other.GetComponent<Building>().CanBePlaced());
+            ChangeMesh(other.GetComponent<BuildingBuildBox>().GetCanBePlaced());
         }
     }
 

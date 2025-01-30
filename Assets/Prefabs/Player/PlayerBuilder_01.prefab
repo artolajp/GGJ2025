@@ -70,9 +70,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8723104724844263364}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1426395334997685218}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
       insertIndex: -1
@@ -83,27 +80,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96bb0492640dfc14abf30aced96594ce, type: 3}
   m_PrefabInstance: {fileID: 8200094543116401650}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &8723104724844263364
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9011139198347855523}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 2, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1426395334997685218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +125,3 @@ MonoBehaviour:
   playerNumber: 0
   buildings:
   - {fileID: 758480396724215067, guid: c26623b11b24e0e48a9c6cf0496785bc, type: 3}
-  - {fileID: 1653705599048530223, guid: a62ad374d78f9ec4a9e32fd07bb767f2, type: 3}
-  - {fileID: 4342951297293819232, guid: 66c0566bf4bf1504a814f72f5b0eaa89, type: 3}
-  - {fileID: 8138334414419470722, guid: e1bd938f5aebc45489f11e2075edc9bd, type: 3}
-  - {fileID: 1615087869539073422, guid: dcad5d18fada6164dbba7d942c75b751, type: 3}

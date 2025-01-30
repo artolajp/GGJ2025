@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 using GGJ2025;
 
 public class PlayerController : MonoBehaviour
@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject particleBubblePop;
 
     // Movement.
-    private Rigidbody rigidbody;
+    private Rigidbody rigidBody;
     private float movement_x;
     private float movement_y;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     private void OnMovement(InputValue movementValue)
@@ -33,14 +33,14 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement = new Vector3(movement_x, 0.0f, movement_y);
 
-        rigidbody.AddForce(movement * speed);
+        rigidBody.AddForce(movement * speed);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "HurtBox")
         {
-            FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
 
             Instantiate(particleBubblePop, transform.position, Quaternion.identity);
 
@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "WinBox")
         {
-            FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
 
-            FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1, "Sound_Win");
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(1, 1, "Sound_Win");
             
             Instantiate(particleBubblePop, transform.position, Quaternion.identity);
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
                 float windStrength = fieldBox.WindForce;
                 Vector3 collisionNormal = other.transform.forward;
 
-                rigidbody.AddForce(collisionNormal * windStrength);
+                rigidBody.AddForce(collisionNormal * windStrength);
             }
         }
     }

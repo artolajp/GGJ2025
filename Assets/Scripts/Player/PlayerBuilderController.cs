@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,13 +8,14 @@ public class PlayerBuilderController : MonoBehaviour
     private Vector3 targetPosition;
     
     [SerializeField] public GameObject[] buildings;
-    private GameObject buildingInstance;
+    [SerializeField] private BuildingBuildBox buildingBuildBox;
 
     private int maximumGridSteps = 10;
 
     private void Awake()
     {
-        buildingInstance = Instantiate(buildings[UnityEngine.Random.Range(0, buildings.Length)], this.transform);
+        GameObject getBuilding = Instantiate(buildings[UnityEngine.Random.Range(0, buildings.Length)], this.transform);
+        buildingBuildBox = getBuilding.transform.Find("BuildBox").GetComponent<BuildingBuildBox>();
     }
 
     private void OnMovement(InputValue movementValue)
@@ -30,19 +30,28 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnRotate()
     {
-        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
+        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
 
         transform.Rotate(0, 90f, 0);
     }
 
     private void OnConfirm()
     {
-        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
+        if (buildingBuildBox.GetCanBePlaced() == 1)
+        {
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
 
-        Actions.PlayerBuilded?.Invoke(this);
+            Actions.PlayerBuilded?.Invoke(this);
 
-        transform.DetachChildren();
-        Destroy(gameObject);
+            buildingBuildBox.SetCanBePlaced(2);
+            buildingBuildBox.SetDontChange(true);
+            transform.DetachChildren();
+            Destroy(gameObject);
+        }
+        else
+        {
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_DoorHandle_2");
+        }
     }
 
     private void OnTriggerStay(Collider other)

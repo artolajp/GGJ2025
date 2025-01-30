@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CameraController : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class CameraController : MonoBehaviour
     {
         if (playMusic == true)
         {
-            FindObjectOfType<AudioController>().AudioPlaySoundVariation(1, 1, "Music_Level_01");
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(1, 1, "Music_Level_01");
             playMusic = false;
         }
 

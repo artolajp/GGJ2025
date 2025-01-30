@@ -9,7 +9,9 @@ TagManager:
   - FieldBox
   - WinBox
   - SingleCell
+  - BuildBox
   - Building
+  - TriggerBox
   layers:
   - Default
   - TransparentFX

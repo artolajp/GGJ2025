@@ -7,15 +7,15 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed = 10f;
 
-    private Rigidbody rigidbody;
+    private Rigidbody rigidBody;
 
     [SerializeField]
     private GameObject particleBullet;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        FindObjectOfType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Bullet");
+        rigidBody = GetComponent<Rigidbody>();
+        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Bullet");
         Instantiate(particleBullet, transform.position, Quaternion.identity);
     }
 
@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     {
         Vector3 direction = transform.forward;
 
-        rigidbody.linearVelocity = direction * speed;
+        rigidBody.linearVelocity = direction * speed;
     }
 
     private void OnCollisionEnter(Collision other)
