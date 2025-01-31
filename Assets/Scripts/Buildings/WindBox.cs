@@ -1,10 +1,8 @@
 using UnityEngine;
 
-public class FieldBox : MonoBehaviour
+public class WindBox : MonoBehaviour
 {
-    [Header("Wind Settings")]
-    [SerializeField]
-    private float windForce = 5f;
+    [SerializeField] private float windForce = 5f;
 
     public float WindForce
     {

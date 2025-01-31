@@ -240,6 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4087284165769231856}
   - component: {fileID: 3225230416150480119}
+  - component: {fileID: 3894143867447437355}
   m_Layer: 0
   m_Name: TriggerBox
   m_TagString: TriggerBox
@@ -283,6 +284,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.9, y: 0.9, z: 1.9}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &3894143867447437355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4854455492291446830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ea8df679acd4890bf9dda245d2ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBox: {fileID: 0}
+  isStatic: 1
 --- !u!1 &5810126405884240185
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043af841725a3b54eb1b506ea9240e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBePlaced: 2
+  buildingStatus: 2
 --- !u!1 &6552361791727393273
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043af841725a3b54eb1b506ea9240e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBePlaced: 2
+  buildingStatus: 2
 --- !u!1 &8571097243232251507
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3014914740435941261}
   - component: {fileID: 7150384401786864128}
+  - component: {fileID: 2032108332465245458}
   m_Layer: 0
   m_Name: TriggerBox
   m_TagString: TriggerBox
@@ -663,3 +679,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.9, y: 0.9, z: 3.9}
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &2032108332465245458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9039199306813271659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ea8df679acd4890bf9dda245d2ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBox: {fileID: 0}
+  isStatic: 1

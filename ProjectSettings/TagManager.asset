@@ -6,12 +6,11 @@ TagManager:
   tags:
   - HitBox
   - HurtBox
-  - FieldBox
   - WinBox
-  - SingleCell
   - BuildBox
-  - Building
   - TriggerBox
+  - BombBox
+  - FieldBox
   layers:
   - Default
   - TransparentFX

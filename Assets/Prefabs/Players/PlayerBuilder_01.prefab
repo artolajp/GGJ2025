@@ -124,4 +124,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   buildings:
-  - {fileID: 758480396724215067, guid: c26623b11b24e0e48a9c6cf0496785bc, type: 3}
+  - {fileID: 35456870125893740, guid: 50b67a81f234a7d468db00b8762ca0a4, type: 3}
+  buildingBuildBox: {fileID: 0}

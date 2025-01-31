@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1856923206751405867}
   - component: {fileID: 5948698613725683209}
   m_Layer: 0
-  m_Name: FieldBox
-  m_TagString: FieldBox
+  m_Name: WindBox
+  m_TagString: WinBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5399783986267396086}
-  - component: {fileID: 2148165177636469195}
   m_Layer: 0
   m_Name: Fan
   m_TagString: Untagged
@@ -100,25 +99,6 @@ Transform:
   - {fileID: 2226612842693303528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2148165177636469195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2632815973603967818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8404af3f8df6f4ab5befcfc780e54cd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBuilding: 1
-  position: {x: 0, y: 0}
-  isInitialBuilding: 1
-  owner: 0
-  grideable:
-    height: 2
-    width: 1
 --- !u!1 &5573657051750629527
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +276,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7819106541004644547}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2064887151211194281}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
       insertIndex: -1
@@ -306,9 +289,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4286657504331859673}
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7819106541004644547}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
 --- !u!4 &2226612842693303528 stripped

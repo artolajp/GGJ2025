@@ -61,9 +61,9 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "FieldBox")
+        if (other.tag == "WindBox")
         {
-            FieldBox fieldBox = other.GetComponent<FieldBox>();
+            WindBox fieldBox = other.GetComponent<WindBox>();
 
             if (fieldBox != null)
             {

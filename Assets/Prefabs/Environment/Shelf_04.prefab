@@ -98,6 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4890708314385965539}
   - component: {fileID: 4268499972389976679}
+  - component: {fileID: 6349374925710142975}
   m_Layer: 0
   m_Name: TriggerBox
   m_TagString: TriggerBox
@@ -141,6 +142,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.9, y: 0.9, z: 0.9}
   m_Center: {x: 0.5, y: 1.5, z: 0}
+--- !u!114 &6349374925710142975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893864796647048167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ea8df679acd4890bf9dda245d2ceef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildBox: {fileID: 0}
+  isStatic: 1
 --- !u!1 &6962417346935521255
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043af841725a3b54eb1b506ea9240e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBePlaced: 2
+  buildingStatus: 2
 --- !u!1001 &8639370250691351420
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,14 +8,32 @@ public class PlayerBuilderController : MonoBehaviour
     private Vector3 targetPosition;
     
     [SerializeField] public GameObject[] buildings;
-    [SerializeField] private BuildingBuildBox buildingBuildBox;
+    private BuildBox buildBox;
+    private BombBox bombBox;
+    private TriggerBox triggerBox;
+
+    private bool bombMode = false;
 
     private int maximumGridSteps = 10;
 
+    [SerializeField] public int DeleteObject = 0;//DELETE
+
     private void Awake()
     {
-        GameObject getBuilding = Instantiate(buildings[UnityEngine.Random.Range(0, buildings.Length)], this.transform);
-        buildingBuildBox = getBuilding.transform.Find("BuildBox").GetComponent<BuildingBuildBox>();
+        int getNumber = DeleteObject;// UnityEngine.Random.Range(0, buildings.Length);
+
+        GameObject getBuilding = Instantiate(buildings[getNumber], this.transform);
+
+        if (getNumber == 0)
+        {
+            bombMode = true;
+            bombBox = getBuilding.transform.Find("BombBox").GetComponent<BombBox>();
+        }
+        else
+        {
+            buildBox = getBuilding.transform.Find("BuildBox").GetComponent<BuildBox>();
+            triggerBox = getBuilding.transform.Find("TriggerBox").GetComponent<TriggerBox>();
+        }
     }
 
     private void OnMovement(InputValue movementValue)
@@ -37,25 +55,28 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnConfirm()
     {
-        if (buildingBuildBox.GetCanBePlaced() == 1)
+        Actions.PlayerBuilded?.Invoke(this);
+
+        if (bombMode == false)
         {
-            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
+            if (buildBox.BuildingStatus == 1)
+            {
+                FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
 
-            Actions.PlayerBuilded?.Invoke(this);
-
-            buildingBuildBox.SetCanBePlaced(2);
-            buildingBuildBox.SetDontChange(true);
-            transform.DetachChildren();
-            Destroy(gameObject);
+                buildBox.BuildingStatus = 2;
+                triggerBox.IsPlaced = true;
+                transform.DetachChildren();
+                Destroy(gameObject);
+            }
+            else
+            {
+                FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_DoorHandle_2");
+            }
         }
         else
         {
-            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_DoorHandle_2");
+            bombBox.Detonate(); // Only if its placed dude!
+            Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        //Debug.Log("Colliding!");
     }
 }

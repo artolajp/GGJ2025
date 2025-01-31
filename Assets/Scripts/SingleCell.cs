@@ -4,8 +4,20 @@ public class SingleCell : MonoBehaviour
 {
     [SerializeField] private MeshFilter getMeshFilter;
     [SerializeField] private Mesh[] meshes;
+    private int mesh = 0;
 
     private int collisions = 0;
+
+    private void Update()
+    {
+        if (collisions == 0)
+        {
+            if (mesh != 0)
+            {
+                ChangeMesh(0);
+            }
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -16,7 +28,7 @@ public class SingleCell : MonoBehaviour
     {
         if (other.tag == "BuildBox")
         {
-            ChangeMesh(other.GetComponent<BuildingBuildBox>().GetCanBePlaced());
+            ChangeMesh(other.GetComponent<BuildBox>().BuildingStatus);
         }
     }
 
@@ -32,6 +44,7 @@ public class SingleCell : MonoBehaviour
 
     public void ChangeMesh(int setMesh = 0)
     {
-        getMeshFilter.mesh = meshes[setMesh];
+        mesh = setMesh;
+        getMeshFilter.mesh = meshes[mesh];
     }
 }
