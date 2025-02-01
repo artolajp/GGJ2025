@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BombBox : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class BombBox : MonoBehaviour
         //Sound.
         //Particles.
 
-        if (triggerBox != null)
+        if (triggerBox != null && triggerBox.IsPlaced == true)
         {
             triggerBox.Detonate();
         }
 
-        Destroy(transform.parent.gameObject);
+        buildBox.BuildingStatus = 0;
+        transform.position = new Vector3(transform.position.x, -40, transform.position.z);
+
+        StartCoroutine("GetDestroyed");
     }
 
     void OnTriggerEnter(Collider other)
@@ -50,5 +54,12 @@ public class BombBox : MonoBehaviour
             triggerBox = null;
             buildBox.BuildingStatus = 3;
         }
+    }
+
+    IEnumerator GetDestroyed()
+    {
+        yield return null;
+
+        Destroy(transform.parent.gameObject);
     }
 }

@@ -75,7 +75,7 @@ public class PlayerBuilderController : MonoBehaviour
         }
         else
         {
-            bombBox.Detonate(); // Only if its placed dude!
+            bombBox.Detonate();
             Destroy(gameObject);
         }
     }

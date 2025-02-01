@@ -123,6 +123,11 @@ public class GameManager : MonoBehaviour
 
     private void StartPlaying()
     {
+        if (cells.activeSelf == true)
+        {
+            cells.SetActive(false);
+        }
+
         gameState = GameState.Playing;
 
         player_01 = Instantiate(players[0], playerStartPositions[0].transform.position, Quaternion.identity);
@@ -207,8 +212,6 @@ public class GameManager : MonoBehaviour
         if (player_01 == null && player_02 == null)
         {
             Actions.PlayerBuilded -= OnPlayerBuilded;
-
-            cells.SetActive(false);
 
             currentTime = 1;
         }

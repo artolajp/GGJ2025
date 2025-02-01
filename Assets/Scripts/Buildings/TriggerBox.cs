@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class TriggerBox : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class TriggerBox : MonoBehaviour
 
     public void Detonate()
     {
-        Destroy(transform.parent.gameObject);
+        isPlaced = false;
+        buildBox.BuildingStatus = 0;
+        transform.position = new Vector3(transform.position.x, -40, transform.position.z);
+
+        StartCoroutine("GetDestroyed");
     }
 
     void OnTriggerEnter(Collider other)
@@ -60,5 +65,12 @@ public class TriggerBox : MonoBehaviour
         {
             buildBox.BuildingStatus = 2;
         }
+    }
+
+    IEnumerator GetDestroyed()
+    {
+        yield return null;
+
+        Destroy(transform.parent.gameObject);
     }
 }

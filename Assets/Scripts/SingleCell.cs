@@ -8,15 +8,10 @@ public class SingleCell : MonoBehaviour
 
     private int collisions = 0;
 
-    private void Update()
+    public void ChangeMesh(int setMesh = 0)
     {
-        if (collisions == 0)
-        {
-            if (mesh != 0)
-            {
-                ChangeMesh(0);
-            }
-        }
+        mesh = setMesh;
+        getMeshFilter.mesh = meshes[mesh];
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,9 +37,13 @@ public class SingleCell : MonoBehaviour
         }
     }
 
-    public void ChangeMesh(int setMesh = 0)
+    public void UpdateMesh()
     {
-        mesh = setMesh;
-        getMeshFilter.mesh = meshes[mesh];
+        collisions--;
+
+        if (collisions == 0)
+        {
+            ChangeMesh(0);
+        }
     }
 }
