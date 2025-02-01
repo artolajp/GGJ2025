@@ -1,49 +1,61 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class SingleCell : MonoBehaviour
+public class SingleCell : CollisionComponent
 {
     [SerializeField] private MeshFilter getMeshFilter;
     [SerializeField] private Mesh[] meshes;
     private int mesh = 0;
 
-    private int collisions = 0;
+    private void FixedUpdate()
+    {
+        CleanUpColliders();
+
+        if (colliders.Count != 0)
+        {
+            int iterator = 0;
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.tag == "BuildBox")
+                {
+                    int buildingStatus = collider.GetComponent<BuildBox>().BuildingStatus;
+
+                    if (iterator > 0)
+                    {
+                        if (buildingStatus > mesh)
+                        {
+                            ChangeMesh(buildingStatus);
+                        }
+                    }
+                    else
+                    {
+                        ChangeMesh(buildingStatus);
+                    }
+                }
+
+                iterator++;
+            }
+
+            colliders.Clear();
+        }
+        else
+        {
+            ChangeMesh(0);
+        }
+    }
+
+    void OnTriggerStay(Collider collider)
+    {
+        AddCollider(collider);
+    }
 
     public void ChangeMesh(int setMesh = 0)
     {
-        mesh = setMesh;
-        getMeshFilter.mesh = meshes[mesh];
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        collisions++;
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "BuildBox")
+        if (mesh != setMesh)
         {
-            ChangeMesh(other.GetComponent<BuildBox>().BuildingStatus);
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        collisions--;
-
-        if (collisions == 0)
-        {
-            ChangeMesh(0);
-        }
-    }
-
-    public void UpdateMesh()
-    {
-        collisions--;
-
-        if (collisions == 0)
-        {
-            ChangeMesh(0);
+            mesh = setMesh;
+            getMeshFilter.mesh = meshes[mesh];
         }
     }
 }

@@ -55,12 +55,12 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnConfirm()
     {
-        Actions.PlayerBuilded?.Invoke(this);
-
         if (bombMode == false)
         {
             if (buildBox.BuildingStatus == 1)
             {
+                Actions.PlayerBuilded?.Invoke(this);
+
                 FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
 
                 buildBox.BuildingStatus = 2;
@@ -75,6 +75,8 @@ public class PlayerBuilderController : MonoBehaviour
         }
         else
         {
+            Actions.PlayerBuilded?.Invoke(this);
+
             bombBox.Detonate();
             Destroy(gameObject);
         }

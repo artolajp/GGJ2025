@@ -1,12 +1,16 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
-public class TriggerBox : MonoBehaviour
+public class TriggerBox : CollisionComponent
 {
     [SerializeField] private BuildBox buildBox;
     [SerializeField] private bool isStatic = false;
     private bool isPlaced = false;
-    private int collisions = 0;
+
+    public bool BuildBox
+    {
+        get { return buildBox; }
+    }
 
     public bool IsPlaced
     {
@@ -14,63 +18,74 @@ public class TriggerBox : MonoBehaviour
         set { isPlaced = value; }
     }
 
-    public void Detonate()
-    {
-        isPlaced = false;
-        buildBox.BuildingStatus = 0;
-        transform.position = new Vector3(transform.position.x, -40, transform.position.z);
-
-        StartCoroutine("GetDestroyed");
-    }
-
-    void OnTriggerEnter(Collider other)
+    private void FixedUpdate()
     {
         if (isStatic == true)
         {
             return;
         }
 
-        collisions++;
+        CleanUpColliders();
 
-        if (isPlaced == false)
+        if (colliders.Count != 0)
         {
-            buildBox.BuildingStatus = 2;
+            int bombsNumber = 0;
+
+            foreach (Collider collider in colliders)
+            {
+                if (bombsNumber == 0)
+                {
+                    buildBox.BuildingStatus = 2;
+                }
+
+                if (isPlaced == true)
+                {
+                    if (collider.tag == "BombBox")
+                    {
+                        bombsNumber++;
+                        buildBox.BuildingStatus = 3;
+                    }
+                }
+            }
+
+            colliders.Clear();
         }
         else
         {
-            if (other.tag == "BombBox")
-            {
-                buildBox.BuildingStatus = 3;
-            }
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (isStatic == true)
-        {
-            return;
-        }
-
-        collisions--;
-
-        if (isPlaced == false)
-        {
-            if (collisions == 0)
+            if (isPlaced == false)
             {
                 buildBox.BuildingStatus = 1;
             }
-        }
-        else
-        {
-            buildBox.BuildingStatus = 2;
+            else
+            {
+                if (buildBox.BuildingStatus != 2)
+                {
+                    buildBox.BuildingStatus = 2;
+                }
+            }
         }
     }
 
-    IEnumerator GetDestroyed()
+    void OnTriggerStay(Collider collider)
     {
-        yield return null;
+        if (isStatic == true)
+        {
+            return;
+        }
 
-        Destroy(transform.parent.gameObject);
+        AddCollider(collider);
+    }
+
+    public void Detonate()
+    {
+        if (isStatic == true)
+        {
+            return;
+        }
+
+        if (isPlaced == true)
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 }
