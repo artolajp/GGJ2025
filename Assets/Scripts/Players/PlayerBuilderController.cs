@@ -38,6 +38,8 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnMovement(InputValue movementValue)
     {
+        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(1f, 1f, "Sound_DeskClick_1", "Sound_DeskClick_2", "Sound_DeskClick_3");
+
         Vector2 movementVector = movementValue.Get<Vector2>();
 
         targetPosition = transform.position + new Vector3(movementVector.x, 0, movementVector.y);
@@ -48,7 +50,7 @@ public class PlayerBuilderController : MonoBehaviour
 
     private void OnRotate()
     {
-        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
+        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_RotateBuilding_1", "Sound_RotateBuilding_2", "Sound_RotateBuilding_3");
 
         transform.Rotate(0, 90f, 0);
     }
@@ -61,7 +63,7 @@ public class PlayerBuilderController : MonoBehaviour
             {
                 Actions.PlayerBuilded?.Invoke(this);
 
-                FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_RotateBuilding");
+                FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BuildPlaced_1", "Sound_BuildPlaced_2", "Sound_BuildPlaced_3");
 
                 buildBox.BuildingStatus = 2;
                 triggerBox.IsPlaced = true;
@@ -70,7 +72,7 @@ public class PlayerBuilderController : MonoBehaviour
             }
             else
             {
-                FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_DoorHandle_2");
+                FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Can'tPlaceBuilding");
             }
         }
         else

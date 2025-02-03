@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Properties.
-    [Header("Player properties.")]
     [SerializeField] public int playerNumber = 0;
     [SerializeField] private float speed = 10f;
     [SerializeField] private GameObject particleBubblePop;
@@ -38,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "HurtBox")
         {
-            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
 
             Instantiate(particleBubblePop, transform.position, Quaternion.identity);
 
@@ -48,8 +47,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "WinBox")
         {
-            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.2f, "Sound_BubblePop_01", "Sound_BubblePop_02", "Sound_BubblePop_03");
-
+            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
             FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(1, 1, "Sound_Win");
             
             Instantiate(particleBubblePop, transform.position, Quaternion.identity);
