@@ -125,4 +125,12 @@ MonoBehaviour:
   playerNumber: 0
   buildings:
   - {fileID: 35456870125893740, guid: 50b67a81f234a7d468db00b8762ca0a4, type: 3}
-  buildingBuildBox: {fileID: 0}
+  - {fileID: 758480396724215067, guid: c26623b11b24e0e48a9c6cf0496785bc, type: 3}
+  - {fileID: 1653705599048530223, guid: a62ad374d78f9ec4a9e32fd07bb767f2, type: 3}
+  - {fileID: 4342951297293819232, guid: 66c0566bf4bf1504a814f72f5b0eaa89, type: 3}
+  - {fileID: 8138334414419470722, guid: e1bd938f5aebc45489f11e2075edc9bd, type: 3}
+  - {fileID: 1615087869539073422, guid: dcad5d18fada6164dbba7d942c75b751, type: 3}
+  - {fileID: 4410392335929461116, guid: c4bceca1e5810e84e8754b9334901f18, type: 3}
+  - {fileID: 7196272595507952115, guid: 4904c2ef86c768f43bb6286fe0071145, type: 3}
+  - {fileID: 3361591599383196255, guid: ef8c2b5ad455e1341b414e3a5c0dab56, type: 3}
+  - {fileID: 2632815973603967818, guid: d5c0b102918abb54ca71cf9e26db8361, type: 3}

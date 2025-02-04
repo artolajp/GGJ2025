@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildBox: {fileID: 3199478140163788984}
+  isStatic: 0
 --- !u!1 &6775437858029071507
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043af841725a3b54eb1b506ea9240e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBePlaced: 1
+  buildingStatus: 1
 --- !u!1001 &4862714615790673700
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class BombBox : CollisionComponent
 
     public void Detonate()
     {
-        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(1f, 1f, "Sound_BombExplosion_1", "Sound_BombExplosion_2", "Sound_BombExplosion_3");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1f, 1f, "Sound_BombExplosion_1", "Sound_BombExplosion_2", "Sound_BombExplosion_3");
 
         //Particles.
 

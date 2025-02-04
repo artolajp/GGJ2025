@@ -10,8 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameState gameState = GameState.Start;
     [SerializeField] private CameraController cameraController = null;
 
+    /*
     [SerializeField] private int score_01 = 2;
     [SerializeField] private int score_02 = 2;
+    */
+
     [SerializeField] private int targetScore = 40;
     [SerializeField] ScorePanel scorePanel = null;
     [SerializeField] private GameObject cells;
@@ -70,9 +73,9 @@ public class GameManager : MonoBehaviour
             }
             break;
 
-            case GameState.Playing when score_01 < targetScore && score_02 < targetScore:
+            case GameState.Playing when GameData.Score_01 < targetScore && GameData.Score_02 < targetScore:
             {
-                scorePanel.Show(score_01, score_02, targetScore, () => {});
+                scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () => {});
                 currentTime = 2f;
                 gameState = GameState.Score;
             }
@@ -80,13 +83,13 @@ public class GameManager : MonoBehaviour
 
             case GameState.Playing:
             {
-                scorePanel.Show(score_01, score_02, targetScore, () =>
+                scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () =>
                 {
-                    if (score_01 > score_02)
+                    if (GameData.Score_01 > GameData.Score_02)
                     {
                         SceneManager.LoadScene("WinGreen");
                     }
-                    else if (score_02 > score_01)
+                    else if (GameData.Score_02 > GameData.Score_01)
                     {
                         SceneManager.LoadScene("WinRed");
                     }
@@ -179,13 +182,13 @@ public class GameManager : MonoBehaviour
         if (player.playerNumber == 0)
         {
             player_01 = null;
-            score_01 += 1;
+            GameData.Score_01 += 1;
         }
 
         if (player.playerNumber == 1)
         {
             player_02 = null;
-            score_02 += 1;
+            GameData.Score_02 += 1;
         }
 
         if (player_01 == null && player_02 == null)

@@ -11,6 +11,7 @@ TagManager:
   - TriggerBox
   - BombBox
   - FieldBox
+  - WindBox
   layers:
   - Default
   - TransparentFX

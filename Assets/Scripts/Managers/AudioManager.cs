@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioController : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    public static AudioController instance;
+    public static AudioManager instance;
     public Audio[] sounds;
 
     void Awake()

@@ -130,5 +130,7 @@ MonoBehaviour:
   - {fileID: 4342951297293819232, guid: 66c0566bf4bf1504a814f72f5b0eaa89, type: 3}
   - {fileID: 8138334414419470722, guid: e1bd938f5aebc45489f11e2075edc9bd, type: 3}
   - {fileID: 1615087869539073422, guid: dcad5d18fada6164dbba7d942c75b751, type: 3}
-  buildingBuildBox: {fileID: 0}
-  DeleteObject: 1
+  - {fileID: 4410392335929461116, guid: c4bceca1e5810e84e8754b9334901f18, type: 3}
+  - {fileID: 7196272595507952115, guid: 4904c2ef86c768f43bb6286fe0071145, type: 3}
+  - {fileID: 3361591599383196255, guid: ef8c2b5ad455e1341b414e3a5c0dab56, type: 3}
+  - {fileID: 2632815973603967818, guid: d5c0b102918abb54ca71cf9e26db8361, type: 3}

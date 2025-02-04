@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Bullet");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Bullet");
         Instantiate(particleBullet, transform.position, Quaternion.identity);
     }
 

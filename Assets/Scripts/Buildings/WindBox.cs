@@ -12,6 +12,6 @@ public class WindBox : MonoBehaviour
 
     private void Awake()
     {
-        FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Fan");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Fan");
     }
 }

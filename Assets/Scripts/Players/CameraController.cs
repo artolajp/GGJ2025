@@ -17,7 +17,7 @@ public class CameraController : MonoBehaviour
     {
         if (playMusic == true)
         {
-            FindAnyObjectByType<AudioController>().AudioPlaySoundVariation(1, 1, "Music_Level_01");
+            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1, 1, "Music_Level_01");
             playMusic = false;
         }
 
