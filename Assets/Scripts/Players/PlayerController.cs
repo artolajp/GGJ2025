@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidBody;
     private float movement_x;
     private float movement_y;
+    private float slowdownForce = 80f;
 
     public int PlayerNumber
     {
@@ -40,43 +41,66 @@ public class PlayerController : MonoBehaviour
         rigidBody.AddForce(movement * speed);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider collider)
     {
-        if (other.tag == "HurtBox")
+        switch (collider.tag)
         {
-            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
+            case "HurtBox":
+            {
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
 
-            Instantiate(particleBubblePop, transform.position, Quaternion.identity);
+                Instantiate(particleBubblePop, transform.position, Quaternion.identity);
 
-            Actions.PlayerDeath?.Invoke(this);
-            Destroy(gameObject);
-        }
+                Actions.PlayerDeath?.Invoke(this);
+                Destroy(gameObject);
+            }
+            break;
 
-        if (other.tag == "WinBox")
-        {
-            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
-            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1, 1, "Sound_Win");
-            
-            Instantiate(particleBubblePop, transform.position, Quaternion.identity);
+            case "WinBox":
+            {
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1, 1, "Sound_Win");
 
-            Actions.PlayerScored?.Invoke(this);
-            Destroy(gameObject);
+                Instantiate(particleBubblePop, transform.position, Quaternion.identity);
+
+                Actions.PlayerScored?.Invoke(this);
+                Destroy(gameObject);
+            }
+            break;
         }
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider collider)
     {
-        if (other.tag == "WindBox")
+        switch (collider.tag)
         {
-            WindBox fieldBox = other.GetComponent<WindBox>();
-
-            if (fieldBox != null)
+            case "HoneyBox":
             {
-                float windStrength = fieldBox.WindForce;
-                Vector3 collisionNormal = other.transform.forward;
+                float getForce = slowdownForce;
+                Vector3 oppositeForce = -rigidBody.linearVelocity.normalized;
 
-                rigidBody.AddForce(collisionNormal * windStrength);
+                if (rigidBody.linearVelocity.magnitude < 4f)
+                {
+                    getForce = 8f;
+                }
+
+                rigidBody.AddForce(oppositeForce * getForce);
             }
+            break;
+
+            case "WindBox":
+            {
+                WindBox fieldBox = collider.GetComponent<WindBox>();
+
+                if (fieldBox != null)
+                {
+                    float windStrength = fieldBox.WindForce;
+                    Vector3 collisionNormal = collider.transform.forward;
+
+                    rigidBody.AddForce(collisionNormal * windStrength);
+                }
+            }
+            break;
         }
     }
 

@@ -14,6 +14,7 @@ TagManager:
   - WindBox
   - PortalBox
   - PlayerBubble
+  - HoneyBox
   layers:
   - Default
   - TransparentFX
