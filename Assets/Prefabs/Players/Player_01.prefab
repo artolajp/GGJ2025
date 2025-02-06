@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd4695652359da746997ecdb4f8f4f24, type: 3}
+      propertyPath: m_TagString
+      value: PlayerBubble
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -175,3 +179,4 @@ MonoBehaviour:
   playerNumber: 0
   speed: 10
   particleBubblePop: {fileID: 8152839933418924111, guid: 8464db1fac2190740ab0aa1c0b3440f4, type: 3}
+  particleBubbleTeleported: {fileID: 8152839933418924111, guid: a04420acba063674b96020f1a14df490, type: 3}

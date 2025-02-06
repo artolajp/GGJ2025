@@ -1162,6 +1162,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.size
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[22].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 993c398292f0133498327279afa26f91, type: 3}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[23].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a47b0a70ed46da40972e472df059a0e, type: 3}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[22].pitch
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[23].pitch
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[22].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633921531011669377, guid: 5ec54af56ad7b4c40b0c69e64ab42648, type: 3}
+      propertyPath: sounds.Array.data[23].volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

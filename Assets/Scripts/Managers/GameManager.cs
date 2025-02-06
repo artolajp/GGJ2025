@@ -157,12 +157,12 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerDead(PlayerController player)
     {
-        if (player.playerNumber == 0)
+        if (player.PlayerNumber == 0)
         {
             player_01 = null;
         }
 
-        if (player.playerNumber == 1)
+        if (player.PlayerNumber == 1)
         {
             player_02 = null;
         }
@@ -179,13 +179,13 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerScored(PlayerController player)
     {
-        if (player.playerNumber == 0)
+        if (player.PlayerNumber == 0)
         {
             player_01 = null;
             GameData.Score_01 += 1;
         }
 
-        if (player.playerNumber == 1)
+        if (player.PlayerNumber == 1)
         {
             player_02 = null;
             GameData.Score_02 += 1;
@@ -202,12 +202,12 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerBuilded(PlayerBuilderController player)
     {
-        if (player.playerNumber == 0)
+        if (player.PlayerNumber == 0)
         {
             player_01 = null;
         }
 
-        if (player.playerNumber == 1)
+        if (player.PlayerNumber == 1)
         {
             player_02 = null;
         }

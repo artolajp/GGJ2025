@@ -4,14 +4,21 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Properties.
-    [SerializeField] public int playerNumber = 0;
+    [SerializeField] private int playerNumber = 0;
     [SerializeField] private float speed = 10f;
     [SerializeField] private GameObject particleBubblePop;
+    [SerializeField] private GameObject particleBubbleTeleported;
 
     // Movement.
     private Rigidbody rigidBody;
     private float movement_x;
     private float movement_y;
+
+    public int PlayerNumber
+    {
+        get { return playerNumber; }
+        set { playerNumber = value; }
+    }
 
     private void Awake()
     {
@@ -71,5 +78,11 @@ public class PlayerController : MonoBehaviour
                 rigidBody.AddForce(collisionNormal * windStrength);
             }
         }
+    }
+
+    public void TeleportParticles()
+    {
+        Instantiate(particleBubblePop, transform.position, Quaternion.identity);
+        Instantiate(particleBubbleTeleported, transform.position, Quaternion.identity);
     }
 }

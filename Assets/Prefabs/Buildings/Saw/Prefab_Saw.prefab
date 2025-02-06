@@ -585,7 +585,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -632,6 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildBox: {fileID: 7822789140757412085}
   isStatic: 0
+  particleBuildPlaced: {fileID: 8152839933418924111, guid: f1dcc20fa49d4fb48802d5cdedb06a91, type: 3}
 --- !u!1 &7812016876301125977
 GameObject:
   m_ObjectHideFlags: 0

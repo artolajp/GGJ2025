@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildBox: {fileID: 3443851564153764490}
   isStatic: 0
+  particleBuildPlaced: {fileID: 8152839933418924111, guid: f1dcc20fa49d4fb48802d5cdedb06a91, type: 3}
 --- !u!1 &4410392335929461116
 GameObject:
   m_ObjectHideFlags: 0

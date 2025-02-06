@@ -12,6 +12,8 @@ TagManager:
   - BombBox
   - FieldBox
   - WindBox
+  - PortalBox
+  - PlayerBubble
   layers:
   - Default
   - TransparentFX

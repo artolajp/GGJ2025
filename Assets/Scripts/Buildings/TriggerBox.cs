@@ -5,11 +5,19 @@ public class TriggerBox : CollisionComponent
 {
     [SerializeField] private BuildBox buildBox;
     [SerializeField] private bool isStatic = false;
+
+    [SerializeField] private GameObject particleBuildPlaced;
+
     private bool isPlaced = false;
 
     public bool BuildBox
     {
         get { return buildBox; }
+    }
+
+    public GameObject ParticleBuildPlaced
+    {
+        get { return particleBuildPlaced; }
     }
 
     public bool IsPlaced

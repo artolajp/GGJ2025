@@ -4,12 +4,13 @@ using System.Collections;
 
 public class PlayerBuilderController : MonoBehaviour
 {
-    [SerializeField] public int playerNumber = 0;
+    [SerializeField] private int playerNumber = 0;
 
     private Vector3 targetPosition;
     private bool inputDelay = false;
     
     [SerializeField] public GameObject[] buildings;
+    private int buildingNumber = 0;
     private BuildBox buildBox;
     private BombBox bombBox;
     private TriggerBox triggerBox;
@@ -18,13 +19,19 @@ public class PlayerBuilderController : MonoBehaviour
 
     private int maximumGridSteps = 10;
 
+    public int PlayerNumber
+    {
+        get { return playerNumber; }
+        set { playerNumber = value; }
+    }
+
     private void Awake()
     {
-        int getNumber = GetRandomBuilding();
+        buildingNumber = GetRandomBuilding();
 
-        GameObject getBuilding = Instantiate(buildings[getNumber], this.transform);
+        GameObject getBuilding = Instantiate(buildings[buildingNumber], this.transform);
 
-        if (getNumber == 0)
+        if (buildingNumber == 0)
         {
             bombMode = true;
             bombBox = getBuilding.transform.Find("BombBox").GetComponent<BombBox>();
@@ -114,6 +121,15 @@ public class PlayerBuilderController : MonoBehaviour
 
                 buildBox.BuildingStatus = 2;
                 triggerBox.IsPlaced = true;
+
+                Instantiate(triggerBox.ParticleBuildPlaced, transform.position, transform.rotation);
+
+                // New portal builded.
+                if (buildingNumber == 11)
+                {
+                    Actions.PortalBuilded();
+                }
+
                 transform.DetachChildren();
                 Destroy(gameObject);
             }
