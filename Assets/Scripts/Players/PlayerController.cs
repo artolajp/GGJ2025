@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         rigidBody.AddForce(movement * speed);
     }
 
-    void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         switch (collider.tag)
         {
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnTriggerStay(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         switch (collider.tag)
         {

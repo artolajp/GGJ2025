@@ -7,11 +7,18 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float maximumDistance = 30f;
     [SerializeField] private float zoomFactor = 1f;
 
+    private Vector3 targetPosition;
+
     public GameObject player_01;
     public GameObject player_02;
     private GameObject remainingPlayer = null;
 
     private bool playMusic = true;
+
+    private void Awake()
+    {
+        targetPosition = transform.position;
+    }
 
     void Update()
     {
@@ -21,8 +28,6 @@ public class CameraController : MonoBehaviour
             playMusic = false;
         }
 
-        Vector3 targetPosition = transform.position;
-
         if (player_01 != null && player_02 != null)
         {
             // Move the camera in the middle position of the two player positions.
@@ -30,14 +35,14 @@ public class CameraController : MonoBehaviour
 
             targetPosition = (player_01.transform.position + player_02.transform.position) / 2;
             targetPosition.y = Mathf.Lerp(minimumDistance, maximumDistance, Mathf.InverseLerp(0, maximumDistance, distance) * zoomFactor);
-            targetPosition.z -= 3f;
+            targetPosition.z -= 2f;
         }
         else if (!(player_01 == null && player_02 == null))
         {
             // Move the camera in the remaining player position.
             if (remainingPlayer == null)
             {
-                targetPosition.z += 3f;
+                targetPosition.z += 2f;
 
                 if (player_01 != null && player_02 == null)
                 {

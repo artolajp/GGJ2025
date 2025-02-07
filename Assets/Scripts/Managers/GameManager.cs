@@ -25,10 +25,22 @@ public class GameManager : MonoBehaviour
     private GameObject player_02;
 
     private float currentTime = 0;
-    private float Timer = 15000;
+    private float Timer = 30;
     [SerializeField] private TMP_Text timerText;
+    private string[] victoryTexts = new string[3] { "Good!", "Nice!", "Great!" };
+    private string[] defeatTexts = new string[3] { "Oh!", "Pop!", "Auch!" };
 
-    void Start()
+    private void OnEnable()
+    {
+        Actions.rulerIsDone += ChangeState;
+    }
+
+    private void OnDisable()
+    {
+        Actions.rulerIsDone -= ChangeState;
+    }
+
+    private void Start()
     {
         ChangeState();
         StartClock();
@@ -41,14 +53,28 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        currentTime -= Time.deltaTime;
-
         if (currentTime < 0 || Input.GetKeyDown("space"))
         {
-            ChangeState();
-        }
+            if (gameState == GameState.Playing)
+            {
+                if (currentTime != -1)
+                {
+                    currentTime = -1;
+                    timerText.text = "Run!";
 
-        timerText.text = currentTime.ToString("00s");
+                    Actions.spelunkyTime?.Invoke(true);
+                }
+            }
+            else
+            {
+                ChangeState();
+            }
+        }
+        else
+        {
+            currentTime -= Time.deltaTime;
+            timerText.text = currentTime.ToString("00s");
+        }
     }
 
     private void ChangeState()
@@ -76,6 +102,7 @@ public class GameManager : MonoBehaviour
             case GameState.Playing when GameData.Score_01 < targetScore && GameData.Score_02 < targetScore:
             {
                 scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () => {});
+
                 currentTime = 2f;
                 gameState = GameState.Score;
             }
@@ -155,7 +182,7 @@ public class GameManager : MonoBehaviour
         Actions.PlayerBuilded += OnPlayerBuilded;
     }
 
-    public void OnPlayerDead(PlayerController player)
+    private void OnPlayerDead(PlayerController player)
     {
         if (player.PlayerNumber == 0)
         {
@@ -173,7 +200,10 @@ public class GameManager : MonoBehaviour
             Actions.PlayerDeath -= OnPlayerScored;
 
             //targetScore--;
-            currentTime = 1;
+            Actions.spelunkyTime?.Invoke(false);
+
+            currentTime = -1;
+            timerText.text = defeatTexts[UnityEngine.Random.Range(0, defeatTexts.Length)];
         }
     }
 
@@ -196,11 +226,14 @@ public class GameManager : MonoBehaviour
             Actions.PlayerDeath -= OnPlayerDead;
             Actions.PlayerDeath -= OnPlayerScored;
 
-            currentTime = 1;
+            Actions.spelunkyTime?.Invoke(false);
+
+            currentTime = -1;
+            timerText.text = victoryTexts[UnityEngine.Random.Range(0, victoryTexts.Length)];
         }
     }
 
-    public void OnPlayerBuilded(PlayerBuilderController player)
+    private void OnPlayerBuilded(PlayerBuilderController player)
     {
         if (player.PlayerNumber == 0)
         {

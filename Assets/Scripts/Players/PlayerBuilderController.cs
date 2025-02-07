@@ -147,7 +147,7 @@ public class PlayerBuilderController : MonoBehaviour
         }
     }
 
-    IEnumerator InputDelay()
+    private IEnumerator InputDelay()
     {
         inputDelay = true;
 

@@ -26,7 +26,7 @@ public class Portal : MonoBehaviour
         portal.transform.Rotate(0, portalFrameSpeed, 0);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (teleportDelay == true)
         {
@@ -56,7 +56,7 @@ public class Portal : MonoBehaviour
         StartCoroutine("TeleportDelay");
     }
 
-    void PortalPlaced()
+    private void PortalPlaced()
     {
         portals.Clear();
 
@@ -71,7 +71,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    IEnumerator TeleportDelay()
+    private IEnumerator TeleportDelay()
     {
         teleportDelay = true;
         portalFrameSpeed = 1f;

@@ -7,4 +7,6 @@ public class Actions
     public static Action<PlayerController> PlayerScored;
     public static Action<PlayerBuilderController> PlayerBuilded;
     public static Action PortalBuilded;
+    public static Action<bool> spelunkyTime;
+    public static Action rulerIsDone;
 }

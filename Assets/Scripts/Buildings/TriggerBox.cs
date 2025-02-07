@@ -74,7 +74,7 @@ public class TriggerBox : CollisionComponent
         }
     }
 
-    void OnTriggerStay(Collider collider)
+    private void OnTriggerStay(Collider collider)
     {
         if (isStatic == true)
         {
