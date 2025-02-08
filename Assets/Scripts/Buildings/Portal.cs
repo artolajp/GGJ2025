@@ -9,10 +9,12 @@ public class Portal : MonoBehaviour
 
     [SerializeField] private GameObject portal;
 
-    private float portalFrameSpeed = 4f;
+    [SerializeField] private float getPortalSpeed;
+    private float portalFrameSpeed = 2f;
 
     private void OnEnable()
     {
+        portalFrameSpeed = getPortalSpeed;
         Actions.PortalBuilded += PortalPlaced;
     }
 
@@ -74,11 +76,11 @@ public class Portal : MonoBehaviour
     private IEnumerator TeleportDelay()
     {
         teleportDelay = true;
-        portalFrameSpeed = 1f;
+        portalFrameSpeed = 0.2f;
 
         yield return new WaitForSeconds(1f);
 
         teleportDelay = false;
-        portalFrameSpeed = 4f;
+        portalFrameSpeed = getPortalSpeed;
     }
 }

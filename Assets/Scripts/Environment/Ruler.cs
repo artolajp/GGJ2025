@@ -3,6 +3,7 @@ using UnityEngine;
 public class Ruler : MonoBehaviour
 {
     private float speed = 0f;
+    [SerializeField] GameObject particleRuler;
 
     private void OnEnable()
     {
@@ -18,8 +19,9 @@ public class Ruler : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
 
-        if (transform.position.z > 12.5f)
+        if (transform.position.z > 10f)
         {
+            Instantiate(particleRuler, transform.position, Quaternion.identity);
             transform.position = new Vector3(transform.position.x, transform.position.y, -18f);
             speed = 0f;
             Actions.rulerIsDone?.Invoke();

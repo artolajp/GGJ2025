@@ -85,8 +85,6 @@ Transform:
   m_Children:
   - {fileID: 400535811652173078}
   - {fileID: 4202723633478925900}
-  - {fileID: 3020161455191819742}
-  - {fileID: 345374061144193688}
   - {fileID: 4032421649576077289}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -102,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12ac2c7421f892418edc051e4f067df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleRuler: {fileID: 8152839933418924111, guid: a0e195ea0eb77cc40853caeb07f93c2f, type: 3}
 --- !u!1001 &145316196959705853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e50bc1fe4925d324988de35d4af8874f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e50bc1fe4925d324988de35d4af8874f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -168,150 +167,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e50bc1fe4925d324988de35d4af8874f, type: 3}
   m_PrefabInstance: {fileID: 145316196959705853}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &234673841415085427
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5085155552168125138}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.92387956
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.38268343
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_Name
-      value: Mesh_RulerWheels_03
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3888297642061451921}
-  m_SourcePrefab: {fileID: 100100000, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
---- !u!4 &345374061144193688 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-  m_PrefabInstance: {fileID: 234673841415085427}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1117125032830722082 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-  m_PrefabInstance: {fileID: 234673841415085427}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3888297642061451921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117125032830722082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e036b6e400f104499ca60457918919a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &3342653521625637429
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5085155552168125138}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9999979
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.227
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.008
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      propertyPath: m_Name
-      value: Mesh_RulerWheels_02
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3400152318405692381}
-  m_SourcePrefab: {fileID: 100100000, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
---- !u!1 &2495579662428233572 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-  m_PrefabInstance: {fileID: 3342653521625637429}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3400152318405692381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2495579662428233572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e036b6e400f104499ca60457918919a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &3020161455191819742 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
-  m_PrefabInstance: {fileID: 3342653521625637429}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4456782000549468583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -330,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -358,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a8a14b202682bc45866ddc2e4a70eeb, type: 3}
       propertyPath: m_Name
-      value: Mesh_RulerWheels_01
+      value: Mesh_RulerWheels
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

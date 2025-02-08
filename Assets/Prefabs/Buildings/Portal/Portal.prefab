@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 9215646710004620377}
+  getPortalSpeed: 1
 --- !u!1 &7832656709687322151
 GameObject:
   m_ObjectHideFlags: 0

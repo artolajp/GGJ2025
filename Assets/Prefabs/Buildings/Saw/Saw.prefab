@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246356256789638736}
   m_Layer: 0
-  m_Name: Prefab_Saw
+  m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
