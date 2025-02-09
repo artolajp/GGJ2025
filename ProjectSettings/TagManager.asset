@@ -15,6 +15,7 @@ TagManager:
   - PortalBox
   - PlayerBubble
   - HoneyBox
+  - Bullet
   layers:
   - Default
   - TransparentFX

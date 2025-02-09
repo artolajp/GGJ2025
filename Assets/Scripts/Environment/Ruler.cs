@@ -21,9 +21,13 @@ public class Ruler : MonoBehaviour
 
         if (transform.position.z > 10f)
         {
+            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BuildPlaced_1", "Sound_BuildPlaced_2", "Sound_BuildPlaced_3");
+
             Instantiate(particleRuler, transform.position, Quaternion.identity);
+
             transform.position = new Vector3(transform.position.x, transform.position.y, -18f);
             speed = 0f;
+
             Actions.rulerIsDone?.Invoke();
         }
     }

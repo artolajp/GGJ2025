@@ -410,3 +410,53 @@ MonoBehaviour:
     spatialBlend: 0
     minimumDistance: 0
     maximumDistance: 0
+  - clip: {fileID: 8300000, guid: 6cb23cb0acd8cff498c33cdbb150889d, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0.1
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
+  - clip: {fileID: 8300000, guid: 8c136fb9b0e250e4da1e528d7933516b, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0.1
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
+  - clip: {fileID: 8300000, guid: ced53ded041ffb441aa9c38252831bbf, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0.1
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
+  - clip: {fileID: 8300000, guid: 5510879972c27074d9f20eedfea53691, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0.1
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0
+  - clip: {fileID: 8300000, guid: b80888e0490b2714d819245953375d99, type: 3}
+    outputAudioMixerGroup: {fileID: 0}
+    loop: 0
+    priority: 0
+    volume: 1
+    pitch: 0.1
+    stereoPan: 0
+    spatialBlend: 0
+    minimumDistance: 0
+    maximumDistance: 0

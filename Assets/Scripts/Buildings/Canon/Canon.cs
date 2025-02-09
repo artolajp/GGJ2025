@@ -3,25 +3,53 @@ using UnityEngine;
 
 public class Canon : MonoBehaviour
 {
-    [Header("Bullet Settings")]
-    [SerializeField]
-    private GameObject bullet;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bulletSpawner;
 
-    [SerializeField]
-    private float spawnInterval = 1f;
+    private bool canShoot;
+    private Animator animator;
 
-    private void Start()
+    [SerializeField] private float animationSpeed = 1f;
+
+    private void OnEnable()
     {
-        StartCoroutine(SpawnBullets());
+        Actions.canShoot += checkIfItCanShoot;
+
+        animator = GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            animator.SetFloat("SpeedMultiplier", 0f);
+        }
     }
 
-    private IEnumerator SpawnBullets()
+    private void OnDisable()
     {
-        while (true)
-        {
-            Instantiate(bullet, transform.position, transform.rotation);
+        Actions.canShoot -= checkIfItCanShoot;
+    }
 
-            yield return new WaitForSeconds(spawnInterval);
+    public void SpawnBullets()
+    {
+        if (canShoot == true)
+        {
+            Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
+        }
+    }
+
+    private void checkIfItCanShoot(bool setCanShoot)
+    {
+        canShoot = setCanShoot;
+
+        if (animator != null)
+        {
+            if (canShoot == false)
+            {
+                animator.SetFloat("SpeedMultiplier", 0f);
+            }
+            else
+            {
+                animator.SetFloat("SpeedMultiplier", animationSpeed);
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ public class Portal : MonoBehaviour
         portal.transform.Rotate(0, portalFrameSpeed, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collider)
     {
         if (teleportDelay == true)
         {
@@ -37,18 +37,37 @@ public class Portal : MonoBehaviour
 
         if (portals.Count != 0)
         {
-            if (other.tag == "PlayerBubble")
+            if (collider.tag == "PlayerBubble")
             {
                 FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BubbleTeleport_1", "Sound_BubbleTeleport_2");
 
                 GameObject getPortal = portals[(UnityEngine.Random.Range(0, portals.Count))];
 
                 getPortal.GetComponent<Portal>().StartTeleportDelay();
-                other.GetComponent<PlayerController>().TeleportParticles();
-                other.transform.position = getPortal.transform.position;
-                other.GetComponent<PlayerController>().TeleportParticles();
+                collider.GetComponent<PlayerController>().TeleportParticles();
+                collider.transform.position = getPortal.transform.position;
+                collider.GetComponent<PlayerController>().TeleportParticles();
 
                 StartTeleportDelay();
+            }
+
+            if (collider.tag == "HurtBox")
+            {
+                if (collider.transform.parent.tag == "Bullet")
+                {
+                    FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_Teleported_1");
+
+                    GameObject getPortal = portals[(UnityEngine.Random.Range(0, portals.Count))];
+                    Bullet getBullet = collider.transform.parent.GetComponent<Bullet>();
+
+                    getPortal.GetComponent<Portal>().StartTeleportDelay();
+                    getBullet.GetComponent<Bullet>().TeleportParticles();
+                    getBullet.transform.position = getPortal.transform.position;
+                    getBullet.transform.rotation = getPortal.transform.rotation;
+                    getBullet.GetComponent<Bullet>().TeleportParticles();
+
+                    StartTeleportDelay();
+                }
             }
         }
     }

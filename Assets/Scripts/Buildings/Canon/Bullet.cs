@@ -1,38 +1,54 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 10f;
+    [SerializeField] protected float speed = 10f;
+    protected Rigidbody rigidBody;
 
-    private Rigidbody rigidBody;
+    [SerializeField] protected GameObject particleBullet;
+    [SerializeField] protected string spawnSound = "Sound_CanonShoot_1";
+    [SerializeField] protected string destroySound = "Sound_Bullet_1";
 
-    [SerializeField]
-    private GameObject particleBullet;
-
-    private void Awake()
+    protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Bullet");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, spawnSound);
         Instantiate(particleBullet, transform.position, Quaternion.identity);
     }
 
-    private void Start()
-    {
-        Vector3 direction = transform.forward;
+    protected abstract void Start();
 
-        rigidBody.linearVelocity = direction * speed;
-    }
-
-    private void OnCollisionEnter(Collision other)
+    protected virtual void OnTriggerEnter(Collider collider)
     {
-        Instantiate(particleBullet, transform.position, Quaternion.identity);
-        Destroy(gameObject);
-    }
+        if (collider.tag == "PortalBox" || collider.tag == "Respawn" || collider.tag == "Finish" || collider.tag == "WindBox")
+        {
+            return;
+        }
 
-    private void OnTriggerEnter(Collider other)
-    {
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, destroySound);
+
         Instantiate(particleBullet, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    protected virtual void OnTriggerStay(Collider collider)
+    {
+        if (collider.tag == "WindBox")
+        {
+            WindBox fieldBox = collider.GetComponent<WindBox>();
+
+            if (fieldBox != null)
+            {
+                float windStrength = fieldBox.WindForce;
+                Vector3 collisionNormal = collider.transform.forward;
+
+                rigidBody.AddForce(collisionNormal * windStrength);
+            }
+        }
+    }
+
+    public virtual void TeleportParticles()
+    {
+        Instantiate(particleBullet, transform.position, Quaternion.identity);
     }
 }

@@ -101,6 +101,8 @@ public class GameManager : MonoBehaviour
 
             case GameState.Playing when GameData.Score_01 < targetScore && GameData.Score_02 < targetScore:
             {
+                Actions.canShoot?.Invoke(false);
+
                 scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () => {});
 
                 currentTime = 2f;
@@ -153,6 +155,8 @@ public class GameManager : MonoBehaviour
 
     private void StartPlaying()
     {
+        Actions.canShoot?.Invoke(true);
+
         if (cells.activeSelf == true)
         {
             cells.SetActive(false);

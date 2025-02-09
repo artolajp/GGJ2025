@@ -30,6 +30,7 @@ public class PlayerBuilderController : MonoBehaviour
         buildingNumber = GetRandomBuilding();
 
         GameObject getBuilding = Instantiate(buildings[buildingNumber], this.transform);
+        buildBox = getBuilding.transform.Find("BuildBox").GetComponent<BuildBox>();
 
         if (buildingNumber == 0)
         {
@@ -38,7 +39,6 @@ public class PlayerBuilderController : MonoBehaviour
         }
         else
         {
-            buildBox = getBuilding.transform.Find("BuildBox").GetComponent<BuildBox>();
             triggerBox = getBuilding.transform.Find("TriggerBox").GetComponent<TriggerBox>();
         }
     }
@@ -46,7 +46,7 @@ public class PlayerBuilderController : MonoBehaviour
     private int GetRandomBuilding()
     {
         int getScore = playerNumber == 0 ? GameData.Score_01 : GameData.Score_02;
-        int getBuilding = UnityEngine.Random.Range(0, buildings.Length);
+        int getBuilding = UnityEngine.Random.Range(12, 15);//UnityEngine.Random.Range(0, buildings.Length);//playerNumber == 0 ? 13 : 16;
 
         if (getScore < 4)
         {
@@ -125,7 +125,7 @@ public class PlayerBuilderController : MonoBehaviour
                 Instantiate(triggerBox.ParticleBuildPlaced, transform.position, transform.rotation);
 
                 // New portal builded.
-                if (buildingNumber == 11)
+                if (buildingNumber == 16)
                 {
                     Actions.PortalBuilded();
                 }
@@ -140,10 +140,17 @@ public class PlayerBuilderController : MonoBehaviour
         }
         else
         {
-            Actions.PlayerBuilded?.Invoke(this);
+            if (buildBox.BuildingStatus == 3)
+            {
+                Actions.PlayerBuilded?.Invoke(this);
 
-            bombBox.Detonate();
-            Destroy(gameObject);
+                bombBox.Detonate();
+                Destroy(gameObject);
+            }
+            else
+            {
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Can'tPlaceBuilding");
+            }
         }
     }
 
