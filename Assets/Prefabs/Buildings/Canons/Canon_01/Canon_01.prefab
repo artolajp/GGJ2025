@@ -158,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577133168813738531}
   m_Layer: 0
-  m_Name: BulletSpawner
+  m_Name: AmmoSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +353,7 @@ PrefabInstance:
       addedObject: {fileID: 2896212830405028488}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 78b55c666a7f8f14b88445db2d3fb5ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6814162636823393191}
+      addedObject: {fileID: 6602991872777596497}
   m_SourcePrefab: {fileID: 100100000, guid: 78b55c666a7f8f14b88445db2d3fb5ae, type: 3}
 --- !u!4 &3545988080430456090 stripped
 Transform:
@@ -387,7 +387,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6814162636823393191
+--- !u!114 &6602991872777596497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -396,9 +396,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4214861224189609888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64db93dd9be6e9648b94defcf8a748a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e32a8ecec4e48e4da1c890bd01aecb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4425410357521626277, guid: 37da6a23754b1d44eaa22b0e45d51a2e, type: 3}
-  bulletSpawner: {fileID: 6343120863485708110}
+  ammoSpawner: {fileID: 6343120863485708110}
   animationSpeed: 1
+  bullet: {fileID: 4425410357521626277, guid: 37da6a23754b1d44eaa22b0e45d51a2e, type: 3}

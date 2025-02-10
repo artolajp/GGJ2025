@@ -39,37 +39,54 @@ public class Portal : MonoBehaviour
         {
             if (collider.tag == "PlayerBubble")
             {
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BubbleTeleport_1", "Sound_BubbleTeleport_2");
+                GameObject getPortal = GetPortal();
 
-                GameObject getPortal = portals[(UnityEngine.Random.Range(0, portals.Count))];
+                if (getPortal != null)
+                {
+                    FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BubbleTeleport_1", "Sound_BubbleTeleport_2");
 
-                getPortal.GetComponent<Portal>().StartTeleportDelay();
-                collider.GetComponent<PlayerController>().TeleportParticles();
-                collider.transform.position = getPortal.transform.position;
-                collider.GetComponent<PlayerController>().TeleportParticles();
+                    getPortal.GetComponent<Portal>().StartTeleportDelay();
+                    collider.GetComponent<PlayerController>().TeleportParticles();
+                    collider.transform.position = getPortal.transform.position;
+                    collider.GetComponent<PlayerController>().TeleportParticles();
 
-                StartTeleportDelay();
+                    StartTeleportDelay();
+                }
             }
 
             if (collider.tag == "HurtBox")
             {
                 if (collider.transform.parent.tag == "Bullet")
                 {
-                    FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_Teleported_1");
+                    GameObject getPortal = GetPortal();
 
-                    GameObject getPortal = portals[(UnityEngine.Random.Range(0, portals.Count))];
-                    Bullet getBullet = collider.transform.parent.GetComponent<Bullet>();
+                    if (getPortal != null)
+                    {
+                        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_Teleported_1");
 
-                    getPortal.GetComponent<Portal>().StartTeleportDelay();
-                    getBullet.GetComponent<Bullet>().TeleportParticles();
-                    getBullet.transform.position = getPortal.transform.position;
-                    getBullet.transform.rotation = getPortal.transform.rotation;
-                    getBullet.GetComponent<Bullet>().TeleportParticles();
+                        Bullet getBullet = collider.transform.parent.GetComponent<Bullet>();
 
-                    StartTeleportDelay();
+                        getPortal.GetComponent<Portal>().StartTeleportDelay();
+                        getBullet.GetComponent<Bullet>().TeleportParticles();
+                        getBullet.transform.position = getPortal.transform.position;
+                        getBullet.transform.rotation = getPortal.transform.rotation;
+                        getBullet.GetComponent<Bullet>().TeleportParticles();
+
+                        StartTeleportDelay();
+                    }
                 }
             }
         }
+    }
+
+    public GameObject GetPortal()
+    {
+        if (portals.Count != 0)
+        {
+            return portals[(UnityEngine.Random.Range(0, portals.Count))];
+        }
+
+        return null;
     }
 
     public void StartTeleportDelay()

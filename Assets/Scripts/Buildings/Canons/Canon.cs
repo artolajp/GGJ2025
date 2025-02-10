@@ -1,17 +1,15 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class Canon : MonoBehaviour
 {
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private GameObject bulletSpawner;
+    [SerializeField] protected GameObject ammoSpawner;
 
-    private bool canShoot;
-    private Animator animator;
+    protected bool canShoot;
+    protected Animator animator;
+    [SerializeField] protected float animationSpeed = 1f;
 
-    [SerializeField] private float animationSpeed = 1f;
-
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Actions.canShoot += checkIfItCanShoot;
 
@@ -23,20 +21,12 @@ public class Canon : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         Actions.canShoot -= checkIfItCanShoot;
     }
 
-    public void SpawnBullets()
-    {
-        if (canShoot == true)
-        {
-            Instantiate(bullet, bulletSpawner.transform.position, bulletSpawner.transform.rotation);
-        }
-    }
-
-    private void checkIfItCanShoot(bool setCanShoot)
+    protected virtual void checkIfItCanShoot(bool setCanShoot)
     {
         canShoot = setCanShoot;
 

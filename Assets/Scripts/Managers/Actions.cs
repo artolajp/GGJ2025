@@ -10,4 +10,5 @@ public class Actions
     public static Action<bool> spelunkyTime;
     public static Action rulerIsDone;
     public static Action<bool> canShoot;
+    public static Action<Lasert> lasertPortalTouched;
 }
