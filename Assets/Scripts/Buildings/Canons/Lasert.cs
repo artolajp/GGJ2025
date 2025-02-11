@@ -3,9 +3,16 @@ using UnityEngine;
 public class Lasert : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private CanonLasert myCanonLasert;
     [SerializeField] private Vector3 portalStartPoint;
     [SerializeField] private Quaternion portalRotation;
     private bool portalHitted = false;
+
+    public CanonLasert MyCanonLasert
+    {
+        get { return myCanonLasert; }
+        set { myCanonLasert = value; }
+    }
 
     public Vector3 PortalStartPoint
     {
@@ -17,36 +24,61 @@ public class Lasert : MonoBehaviour
         get { return portalRotation; }
     }
 
+    private void Awake()
+    {
+        CalculateLasert(false);
+    }
+
     private void Update()
+    {
+        CalculateLasert(true);
+    }
+
+    private void CalculateLasert(bool checkPortals)
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.up, out hit))
+        if (Physics.Raycast(transform.position, transform.right, out hit))
         {
             if (hit.collider)
             {
                 SetLasertsEndPoint(hit.point);
             }
 
-            if (hit.collider.tag == "PortalBox" && portalHitted == false)
+            if (checkPortals == true)
             {
-                Portal getCollisionPortal = hit.collider.GetComponent<Portal>();
-                GameObject getPortal = getCollisionPortal.GetPortal();
-
-                if (getPortal != null)
+                if (hit.collider.tag == "PortalBox")
                 {
-                    portalStartPoint = getPortal.transform.position;
-                    portalRotation = getPortal.transform.rotation;
+                    if (portalHitted == false)
+                    {
+                        Portal getCollisionPortal = hit.collider.GetComponent<Portal>();
+                        GameObject getPortal = getCollisionPortal.GetPortal();
 
-                    Actions.lasertPortalTouched?.Invoke(this);
+                        if (getPortal != null)
+                        {
+                            portalStartPoint = getPortal.transform.position;
+                            portalRotation = getPortal.transform.rotation;
 
-                    portalHitted = true;
+                            Actions.lasertPortalTouched?.Invoke(this);
+
+                            portalHitted = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (portalHitted == true)
+                    {
+                        Actions.lasertPortalUntouched?.Invoke(this);
+
+                        portalHitted = false;
+                    }
                 }
             }
         }
         else
         {
-            SetLasertsEndPoint(transform.up * 5000);
+            SetLasertsEndPoint(transform.right * 5000);
         }
     }
 
