@@ -28,6 +28,8 @@ public class Ruler : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, -18f);
             speed = 0f;
 
+            Instantiate(particleRuler, transform.position, Quaternion.identity);
+
             Actions.rulerIsDone?.Invoke();
         }
     }

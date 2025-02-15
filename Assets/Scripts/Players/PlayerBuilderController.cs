@@ -48,8 +48,8 @@ public class PlayerBuilderController : MonoBehaviour
         int getScore = playerNumber == 0 ? GameData.Score_01 : GameData.Score_02;
 
         //DELETE:
-        int getBuilding = playerNumber == 0 ? 12 : 15;
-        //int getBuilding = UnityEngine.Random.Range(12, 16);
+        //int getBuilding = playerNumber == 0 ? 12 : 15;
+        int getBuilding = UnityEngine.Random.Range(12, 16);
 
         //USE:
         //int getBuilding = UnityEngine.Random.Range(0, buildings.Length);

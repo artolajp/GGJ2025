@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     enum GameState { Start, Playing, Building, Score, EndScreen, StartScreen }
+    enum TimerMode { Playing, Building, Ruler, Overtime, TimeTransition, Transition }
 
     [SerializeField] GameState gameState = GameState.Start;
     [SerializeField] private CameraController cameraController = null;
@@ -25,19 +26,21 @@ public class GameManager : MonoBehaviour
     private GameObject player_02;
 
     private float currentTime = 0;
-    private float Timer = 30;
+    private float timer = 30f;
+    private TimerMode timerMode = TimerMode.Playing;
+    [SerializeField] private TMP_Text timerNumbersText;
     [SerializeField] private TMP_Text timerText;
     private string[] victoryTexts = new string[3] { "Good!", "Nice!", "Great!" };
     private string[] defeatTexts = new string[3] { "Oh!", "Pop!", "Auch!" };
 
     private void OnEnable()
     {
-        Actions.rulerIsDone += ChangeState;
+        Actions.rulerIsDone += Overtime;
     }
 
     private void OnDisable()
     {
-        Actions.rulerIsDone -= ChangeState;
+        Actions.rulerIsDone -= Overtime;
     }
 
     private void Start()
@@ -48,32 +51,89 @@ public class GameManager : MonoBehaviour
 
     private void StartClock()
     {
-        currentTime = Timer;
+        currentTime = timer;
     }
 
     private void Update()
     {
-        if (currentTime < 0 || Input.GetKeyDown("space"))
-        {
-            if (gameState == GameState.Playing)
-            {
-                if (currentTime != -1)
-                {
-                    currentTime = -1;
-                    timerText.text = "Run!";
+        CalculateTimer();
 
-                    Actions.spelunkyTime?.Invoke(true);
+        if (Input.GetKeyDown("space"))
+        {
+            ChangeState();
+        }
+    }
+
+    private void CalculateTimer()
+    {
+        switch (timerMode)
+        {
+            case TimerMode.Playing:
+            {
+                currentTime -= Time.deltaTime;
+                timerNumbersText.text = currentTime.ToString("00s");
+
+                if (currentTime < 0)
+                {
+                    timerMode = TimerMode.Ruler;
                 }
             }
-            else
+            break;
+
+            case TimerMode.Building:
             {
-                ChangeState();
+                currentTime -= Time.deltaTime;
+                timerNumbersText.text = currentTime.ToString("00s");
+
+                if (currentTime < 0)
+                {
+                    ChangeState();
+                }
             }
-        }
-        else
-        {
-            currentTime -= Time.deltaTime;
-            timerText.text = currentTime.ToString("00s");
+            break;
+
+        case TimerMode.Ruler:
+            {
+                timerNumbersText.text = "Run!";
+
+                Actions.spelunkyTime?.Invoke(true);
+            }
+            break;
+
+            case TimerMode.Overtime:
+            {
+                currentTime -= Time.deltaTime;
+                timerNumbersText.text = currentTime.ToString("00s");
+
+                if (currentTime < 0)
+                {
+                    ChangeState();
+                }
+            }
+            break;
+
+            case TimerMode.Transition:
+            {
+                currentTime -= Time.deltaTime;
+
+                if (currentTime < 0)
+                {
+                    ChangeState();
+                }
+            }
+            break;
+
+            case TimerMode.TimeTransition:
+            {
+                currentTime -= Time.deltaTime;
+                timerNumbersText.text = currentTime.ToString("00s");
+
+                if (currentTime < 0)
+                {
+                    ChangeState();
+                }
+            }
+            break;
         }
     }
 
@@ -89,7 +149,7 @@ public class GameManager : MonoBehaviour
             Destroy(player_02);
         }
 
-        currentTime = Timer;
+        currentTime = timer;
 
         switch (gameState)
         {
@@ -105,7 +165,10 @@ public class GameManager : MonoBehaviour
 
                 scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () => {});
 
+                timerText.text = "Scores:";
+
                 currentTime = 2f;
+                timerMode = TimerMode.TimeTransition;
                 gameState = GameState.Score;
             }
             break;
@@ -155,6 +218,9 @@ public class GameManager : MonoBehaviour
 
     private void StartPlaying()
     {
+        timerText.text = "Time:";
+        timerMode = TimerMode.Playing;
+
         Actions.canShoot?.Invoke(true);
 
         if (cells.activeSelf == true)
@@ -175,6 +241,9 @@ public class GameManager : MonoBehaviour
 
     private void StartBuilding()
     {
+        timerText.text = "Building:";
+        timerMode = TimerMode.Building;
+
         gameState = GameState.Building;
 
         player_01 = Instantiate(players[2]);
@@ -206,8 +275,9 @@ public class GameManager : MonoBehaviour
             //targetScore--;
             Actions.spelunkyTime?.Invoke(false);
 
-            currentTime = -1;
-            timerText.text = defeatTexts[UnityEngine.Random.Range(0, defeatTexts.Length)];
+            timerNumbersText.text = defeatTexts[UnityEngine.Random.Range(0, defeatTexts.Length)];
+            currentTime = 1f;
+            timerMode = TimerMode.Transition;
         }
     }
 
@@ -232,8 +302,9 @@ public class GameManager : MonoBehaviour
 
             Actions.spelunkyTime?.Invoke(false);
 
-            currentTime = -1;
-            timerText.text = victoryTexts[UnityEngine.Random.Range(0, victoryTexts.Length)];
+            timerNumbersText.text = victoryTexts[UnityEngine.Random.Range(0, victoryTexts.Length)];
+            currentTime = 1f;
+            timerMode = TimerMode.Transition;
         }
     }
 
@@ -253,7 +324,21 @@ public class GameManager : MonoBehaviour
         {
             Actions.PlayerBuilded -= OnPlayerBuilded;
 
-            currentTime = 1;
+            timerNumbersText.text = "Ready?";
+            currentTime = 1f;
+            timerMode = TimerMode.Transition;
         }
+    }
+
+    private void Overtime()
+    {
+        if (timerMode == TimerMode.Overtime || timerMode == TimerMode.TimeTransition || timerMode == TimerMode.Transition)
+        {
+            return;
+        }
+
+        timerText.text = "Overtime:";
+        currentTime = 20f;
+        timerMode = TimerMode.Overtime;
     }
 }

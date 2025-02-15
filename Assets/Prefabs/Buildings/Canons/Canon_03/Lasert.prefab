@@ -153,5 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5881669051152073456}
+  particleLasert: {fileID: 8152839933418924111, guid: 25e3f9d07575a9248a82dce6f7974dbc, type: 3}
+  particleLasertStart: {fileID: 0}
+  particleLasertEnd: {fileID: 0}
+  myCanonLasert: {fileID: 0}
   portalStartPoint: {x: 0, y: 0, z: 0}
   portalRotation: {x: 0, y: 0, z: 0, w: 0}

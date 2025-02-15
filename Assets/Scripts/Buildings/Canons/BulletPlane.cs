@@ -68,6 +68,8 @@ public class BulletPlane : Bullet
 
             if (fieldBox != null)
             {
+                speed += 4;
+
                 float windStrength = fieldBox.WindForce * 4;
                 Vector3 collisionNormal = collider.transform.forward;
 

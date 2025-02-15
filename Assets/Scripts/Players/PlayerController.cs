@@ -47,24 +47,15 @@ public class PlayerController : MonoBehaviour
         {
             case "HurtBox":
             {
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
-
-                Instantiate(particleBubblePop, transform.position, Quaternion.identity);
-
-                Actions.PlayerDeath?.Invoke(this);
-                Destroy(gameObject);
+                BubblePop(true);
             }
             break;
 
             case "WinBox":
             {
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
                 FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1, 1, "Sound_Win");
 
-                Instantiate(particleBubblePop, transform.position, Quaternion.identity);
-
-                Actions.PlayerScored?.Invoke(this);
-                Destroy(gameObject);
+                BubblePop(false);
             }
             break;
         }
@@ -108,5 +99,23 @@ public class PlayerController : MonoBehaviour
     {
         Instantiate(particleBubblePop, transform.position, Quaternion.identity);
         Instantiate(particleBubbleTeleported, transform.position, Quaternion.identity);
+    }
+
+    public void BubblePop(bool isDeath)
+    {
+        if (isDeath == true)
+        {
+            Actions.PlayerDeath?.Invoke(this);
+        }
+        else
+        {
+            Actions.PlayerScored?.Invoke(this);
+        }
+
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
+
+        Instantiate(particleBubblePop, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
     }
 }

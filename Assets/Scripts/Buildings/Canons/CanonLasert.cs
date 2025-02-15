@@ -56,6 +56,7 @@ public class CanonLasert : Canon
         {
             for (int iterator = laserts.IndexOf(getLasert) + 1; iterator < laserts.Count; iterator++)
             {
+                laserts[iterator].DestroyPartices();
                 Destroy(laserts[iterator].gameObject);
                 laserts.RemoveAt(iterator);
 
@@ -70,6 +71,7 @@ public class CanonLasert : Canon
         {
             foreach (Lasert lasert in laserts)
             {
+                lasert.DestroyPartices();
                 Destroy(lasert.gameObject);
             }
         }

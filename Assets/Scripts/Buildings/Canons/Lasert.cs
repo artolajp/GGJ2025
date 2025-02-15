@@ -3,9 +3,12 @@ using UnityEngine;
 public class Lasert : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private CanonLasert myCanonLasert;
-    [SerializeField] private Vector3 portalStartPoint;
-    [SerializeField] private Quaternion portalRotation;
+    [SerializeField] private GameObject particleLasert;
+    private ParticleSystem particleLasertStart;
+    private ParticleSystem particleLasertEnd;
+    private CanonLasert myCanonLasert;
+    private Vector3 portalStartPoint;
+    private Quaternion portalRotation;
     private bool portalHitted = false;
 
     public CanonLasert MyCanonLasert
@@ -40,9 +43,15 @@ public class Lasert : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.right, out hit))
         {
-            if (hit.collider)
+            if (hit.collider && hit.collider.tag != "PlayerBubble")
             {
                 SetLasertsEndPoint(hit.point);
+            }
+
+            if (hit.collider.tag == "PlayerBubble")
+            {
+                PlayerController getPlayer = hit.collider.GetComponent<PlayerController>();
+                getPlayer.BubblePop(true);
             }
 
             if (checkPortals == true)
@@ -84,6 +93,12 @@ public class Lasert : MonoBehaviour
 
     public void SetLasertsStartPoint(Vector3 startPoint, Quaternion rotation)
     {
+        if (particleLasertStart == null)
+        {
+            GameObject getParticle = Instantiate(particleLasert, startPoint, rotation);
+            particleLasertStart = getParticle.GetComponent<ParticleSystem>();
+        }
+
         transform.rotation = rotation;
 
         lineRenderer.SetPosition(0, startPoint);
@@ -91,6 +106,29 @@ public class Lasert : MonoBehaviour
 
     public void SetLasertsEndPoint(Vector3 endPoint)
     {
+        if (particleLasertEnd == null)
+        {
+            GameObject getParticle = Instantiate(particleLasert, endPoint, transform.rotation);
+            particleLasertEnd = getParticle.GetComponent<ParticleSystem>();
+        }
+        else
+        {
+            particleLasertEnd.gameObject.transform.position = endPoint;
+        }
+
         lineRenderer.SetPosition(1, endPoint);
+    }
+
+    public void DestroyPartices()
+    {
+        if (particleLasertStart != null)
+        {
+            particleLasertStart.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
+
+        if (particleLasertEnd != null)
+        {
+            particleLasertEnd.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
     }
 }

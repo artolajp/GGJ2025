@@ -536,6 +536,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7299783071734174814, guid: 9cb407519a733224a93b4e0f9cd303df, type: 3}
   m_PrefabInstance: {fileID: 8365463220379455611}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &702086638 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7601209517970626536, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
+  m_PrefabInstance: {fileID: 6142014617771997121}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &893004423 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1941362106607624317, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
@@ -896,7 +907,7 @@ PrefabInstance:
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: timerText
       value: 
-      objectReference: {fileID: 1209895352}
+      objectReference: {fileID: 702086638}
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: scorePanel
       value: 
@@ -905,6 +916,10 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 3107770762042862667}
+    - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
+      propertyPath: timerNumbersText
+      value: 
+      objectReference: {fileID: 1209895352}
     - target: {fileID: 7423688483857542986, guid: 260086c4059494a708c282d61b575cae, type: 3}
       propertyPath: 'playerStartPositions.Array.data[0]'
       value: 
@@ -1114,6 +1129,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 893308184}
     m_Modifications:
+    - target: {fileID: 1149738776871805262, guid: 9862d5a1f25113b409700b2ceeb230c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674910222845931365, guid: 9862d5a1f25113b409700b2ceeb230c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3654968650952721929, guid: 9862d5a1f25113b409700b2ceeb230c1, type: 3}
       propertyPath: m_Name
       value: OutsideWalls
@@ -1364,21 +1387,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 885452202636072853, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 885452202636072853, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1576576564647683881, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
       propertyPath: m_Name
       value: UserInterface
       objectReference: {fileID: 0}
     - target: {fileID: 4070871684784774973, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070871684784774973, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 615
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142339031403959427, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 7099518099951242742, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
       propertyPath: m_Pivot.x
@@ -1461,8 +1484,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7601209517970626536, guid: 6db8a4a14f169c2409f847180bb31278, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

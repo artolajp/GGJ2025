@@ -46,8 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 0
   cameraController: {fileID: 0}
-  score_01: 2
-  score_02: 2
   targetScore: 40
   scorePanel: {fileID: 0}
   cells: {fileID: 0}
@@ -59,4 +57,5 @@ MonoBehaviour:
   playerStartPositions:
   - {fileID: 0}
   - {fileID: 0}
+  timerNumbersText: {fileID: 0}
   timerText: {fileID: 0}
