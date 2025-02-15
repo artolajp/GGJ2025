@@ -57,7 +57,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c78ad0a2a1317504b9eb072af4b351a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,6 +81,12 @@ LineRenderer:
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 2}
+  - {x: 0, y: 0, z: 3}
+  - {x: 0, y: 0, z: 4}
+  - {x: 0, y: 0, z: 5}
+  - {x: 0, y: 0, z: 6}
+  - {x: 0, y: 0, z: 7}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -89,46 +95,55 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
+        value: 0.64650923
+        inSlope: -0.052828614
+        outSlope: -0.052828614
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.17603746
+      - serializedVersion: 3
+        time: 1
+        value: 0.5302286
+        inSlope: -0.00988031
+        outSlope: -0.00988031
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.15729582
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 1, g: 0, b: 0.027451038, a: 0.3137255}
+      key1: {r: 1, g: 0.84313726, b: 0, a: 1}
+      key2: {r: 0.9928105, g: 0.8526721, b: 0.03979658, a: 1}
+      key3: {r: 1, g: 0.36010665, b: 0, a: 0.47058824}
+      key4: {r: 0, g: 0, b: 0, a: 0.019607844}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
+      ctime0: 77
+      ctime1: 13107
+      ctime2: 58982
+      ctime3: 65535
       ctime4: 0
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
+      atime1: 3277
+      atime2: 62258
+      atime3: 65535
+      atime4: 65535
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_ColorSpace: 0
+      m_NumColorKeys: 4
+      m_NumAlphaKeys: 4
     numCornerVertices: 1
     numCapVertices: 1
     alignment: 0
@@ -154,8 +169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5881669051152073456}
   particleLasert: {fileID: 8152839933418924111, guid: 25e3f9d07575a9248a82dce6f7974dbc, type: 3}
-  particleLasertStart: {fileID: 0}
-  particleLasertEnd: {fileID: 0}
-  myCanonLasert: {fileID: 0}
-  portalStartPoint: {x: 0, y: 0, z: 0}
-  portalRotation: {x: 0, y: 0, z: 0, w: 0}
+  lengthOfLineRenderer: 8

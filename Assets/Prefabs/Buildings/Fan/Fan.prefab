@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 833755231400628530}
   - component: {fileID: 5177331571133972877}
   - component: {fileID: 499196344634427904}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WindBox
   m_TagString: WindBox
   m_Icon: {fileID: 0}
@@ -391,11 +391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2408590435328613258, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
       propertyPath: m_Name
-      value: Mesh_Fan
+      value: MeshFan
       objectReference: {fileID: 0}
     - target: {fileID: 3489497601361014436, guid: 611ea2a64d0da914a97beee4658b9183, type: 3}
       propertyPath: m_Name
-      value: Armature
+      value: Armature.002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

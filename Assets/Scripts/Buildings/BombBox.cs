@@ -65,7 +65,7 @@ public class BombBox : CollisionComponent
             }
         }
 
-        Actions.PortalBuilded();
+        Actions.PortalBuilded?.Invoke();
 
         Destroy(transform.parent.gameObject);
     }

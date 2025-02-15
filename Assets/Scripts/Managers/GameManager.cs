@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
             Actions.PlayerDeath -= OnPlayerDead;
             Actions.PlayerDeath -= OnPlayerScored;
 
-            //targetScore--;
+            targetScore--;
             Actions.spelunkyTime?.Invoke(false);
 
             timerNumbersText.text = defeatTexts[UnityEngine.Random.Range(0, defeatTexts.Length)];

@@ -27,6 +27,8 @@ public class CanonLasert : Canon
     {
         if (laserts.Count < 5)
         {
+            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.8f, 1.8f, "Sound_Lasert");
+
             Lasert getLasert = Instantiate(lasert, startPoint, rotation);
             getLasert.GetComponent<Lasert>();
 
@@ -52,6 +54,11 @@ public class CanonLasert : Canon
 
     private void lasertPortalUntouched(Lasert getLasert)
     {
+        if (getLasert.MyCanonLasert != this)
+        {
+            return;
+        }
+
         if (laserts.Count != 0)
         {
             for (int iterator = laserts.IndexOf(getLasert) + 1; iterator < laserts.Count; iterator++)

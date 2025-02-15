@@ -4,6 +4,7 @@ public class Lasert : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject particleLasert;
+    [SerializeField] private int lengthOfLineRenderer = 8;
     private ParticleSystem particleLasertStart;
     private ParticleSystem particleLasertEnd;
     private CanonLasert myCanonLasert;
@@ -116,7 +117,14 @@ public class Lasert : MonoBehaviour
             particleLasertEnd.gameObject.transform.position = endPoint;
         }
 
-        lineRenderer.SetPosition(1, endPoint);
+        var points = new Vector3[lengthOfLineRenderer];
+
+        for (int iterator = 0; iterator < lengthOfLineRenderer; iterator++)
+        {
+            points[iterator] = Vector3.Lerp(transform.position, endPoint, (float)iterator / (lengthOfLineRenderer - 1));
+        }
+
+        lineRenderer.SetPositions(points);
     }
 
     public void DestroyPartices()

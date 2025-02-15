@@ -49,10 +49,9 @@ public class PlayerBuilderController : MonoBehaviour
 
         //DELETE:
         //int getBuilding = playerNumber == 0 ? 12 : 15;
-        int getBuilding = UnityEngine.Random.Range(12, 16);
+        //int getBuilding = UnityEngine.Random.Range(12, 16);
 
-        //USE:
-        //int getBuilding = UnityEngine.Random.Range(0, buildings.Length);
+        int getBuilding = UnityEngine.Random.Range(0, buildings.Length);
 
         if (getScore < 4)
         {
@@ -133,7 +132,7 @@ public class PlayerBuilderController : MonoBehaviour
                 // New portal builded.
                 if (buildingNumber == 12)
                 {
-                    Actions.PortalBuilded();
+                    Actions.PortalBuilded?.Invoke();
                 }
 
                 transform.DetachChildren();
