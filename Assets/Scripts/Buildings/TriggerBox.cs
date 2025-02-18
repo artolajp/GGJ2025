@@ -15,6 +15,11 @@ public class TriggerBox : CollisionComponent
         get { return buildBox; }
     }
 
+    public BuildBox GetBuildBox
+    {
+        get { return buildBox; }
+    }
+
     public GameObject ParticleBuildPlaced
     {
         get { return particleBuildPlaced; }

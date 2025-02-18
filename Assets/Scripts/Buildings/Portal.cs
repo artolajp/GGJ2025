@@ -15,12 +15,12 @@ public class Portal : MonoBehaviour
     private void OnEnable()
     {
         portalFrameSpeed = getPortalSpeed;
-        Actions.PortalBuilded += PortalPlaced;
+        Actions.portalBuilded += PortalPlaced;
     }
 
     private void OnDisable()
     {
-        Actions.PortalBuilded -= PortalPlaced;
+        Actions.portalBuilded -= PortalPlaced;
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class Portal : MonoBehaviour
 
                 if (getPortal != null)
                 {
-                    FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BubbleTeleport_1", "Sound_BubbleTeleport_2");
+                    FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.2f, 1.2f, "Sound_BubbleTeleport_1", "Sound_BubbleTeleport_2");
 
                     getPortal.GetComponent<Portal>().StartTeleportDelay();
                     collider.GetComponent<PlayerController>().TeleportParticles();
@@ -62,7 +62,7 @@ public class Portal : MonoBehaviour
 
                     if (getPortal != null)
                     {
-                        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_Teleported_1");
+                        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.2f, 1.2f, "Sound_Teleported_1");
 
                         Bullet getBullet = collider.transform.parent.GetComponent<Bullet>();
 

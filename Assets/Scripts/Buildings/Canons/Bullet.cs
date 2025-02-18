@@ -12,7 +12,7 @@ public abstract class Bullet : MonoBehaviour
     protected virtual void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, spawnSound);
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.9f, 1.1f, spawnSound);
         Instantiate(particleBullet, transform.position, Quaternion.identity);
     }
 
@@ -25,7 +25,7 @@ public abstract class Bullet : MonoBehaviour
             return;
         }
 
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, destroySound);
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.9f, 1.1f, destroySound);
 
         Instantiate(particleBullet, transform.position, Quaternion.identity);
         Destroy(gameObject);

@@ -11,11 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameState gameState = GameState.Start;
     [SerializeField] private CameraController cameraController = null;
 
-    /*
-    [SerializeField] private int score_01 = 2;
-    [SerializeField] private int score_02 = 2;
-    */
-
     [SerializeField] ScorePanel scorePanel = null;
     [SerializeField] private GameObject cells;
 
@@ -23,9 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Transform> playerStartPositions = new();
     private GameObject player_01;
     private GameObject player_02;
+    private int deadPlaters = 0;
 
     private float currentTime = 0;
-    private float timer = 30f;
+    private float timer = 15f;
     private TimerMode timerMode = TimerMode.Playing;
     [SerializeField] private TMP_Text timerNumbersText;
     [SerializeField] private TMP_Text timerText;
@@ -183,7 +179,7 @@ public class GameManager : MonoBehaviour
 
                 scorePanel.Show(GameData.Score_01, GameData.Score_02, GameData.TargetScore);
 
-                currentTime = 3f;
+                currentTime = 2f;
                 timerMode = TimerMode.Transition;
                 gameState = GameState.EndScreen;
             }
@@ -214,7 +210,6 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Tie!");
                     Actions.makeTransition?.Invoke("Scene_DrawAndTie");
                 }
             }
@@ -224,6 +219,21 @@ public class GameManager : MonoBehaviour
 
     private void StartPlaying()
     {
+        if (GameData.Score_01 >= GameData.TargetScore / 2 || GameData.Score_02 >= GameData.TargetScore / 2)
+        {
+            timer = 30f;
+        }
+        else
+        {
+            if (GameData.Score_01 >= GameData.TargetScore / 4 || GameData.Score_02 >= GameData.TargetScore / 4)
+            {
+                timer = 20f;
+            }
+        }
+
+        deadPlaters = 0;
+        PlayerBuilderController.BombExtraChance = false;
+
         timerText.text = "Time:";
         timerMode = TimerMode.Playing;
 
@@ -241,8 +251,8 @@ public class GameManager : MonoBehaviour
         cameraController.player_01 = player_01;
         cameraController.player_02 = player_02;
 
-        Actions.PlayerDeath += OnPlayerDead;
-        Actions.PlayerScored += OnPlayerScored;
+        Actions.playerDeath += OnPlayerDead;
+        Actions.playerScored += OnPlayerScored;
     }
 
     private void StartBuilding()
@@ -252,17 +262,24 @@ public class GameManager : MonoBehaviour
 
         gameState = GameState.Building;
 
+        if (deadPlaters >= 2)
+        {
+            PlayerBuilderController.BombExtraChance = true;
+        }
+
         player_01 = Instantiate(players[2]);
         player_02 = Instantiate(players[3]);
         cameraController.player_01 = player_01;
         cameraController.player_02 = player_02;
         cells.SetActive(true);
 
-        Actions.PlayerBuilded += OnPlayerBuilded;
+        Actions.playerBuilded += OnPlayerBuilded;
     }
 
     private void OnPlayerDead(PlayerController player)
     {
+        deadPlaters++;
+
         if (player.PlayerNumber == 0)
         {
             player_01 = null;
@@ -275,8 +292,8 @@ public class GameManager : MonoBehaviour
 
         if (player_01 == null && player_02 == null)
         {
-            Actions.PlayerDeath -= OnPlayerDead;
-            Actions.PlayerScored -= OnPlayerScored;
+            Actions.playerDeath -= OnPlayerDead;
+            Actions.playerScored -= OnPlayerScored;
 
             Actions.spelunkyTime?.Invoke(false);
 
@@ -302,8 +319,8 @@ public class GameManager : MonoBehaviour
 
         if (player_01 == null && player_02 == null)
         {
-            Actions.PlayerDeath -= OnPlayerDead;
-            Actions.PlayerScored -= OnPlayerScored;
+            Actions.playerDeath -= OnPlayerDead;
+            Actions.playerScored -= OnPlayerScored;
 
             Actions.spelunkyTime?.Invoke(false);
 
@@ -327,7 +344,7 @@ public class GameManager : MonoBehaviour
 
         if (player_01 == null && player_02 == null)
         {
-            Actions.PlayerBuilded -= OnPlayerBuilded;
+            Actions.playerBuilded -= OnPlayerBuilded;
 
             timerNumbersText.text = "Ready?";
             currentTime = 1f;

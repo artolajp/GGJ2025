@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
             case "WinBox":
             {
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1, 1, "Sound_Win");
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(1, 1, "Sound_Win");
 
                 BubblePop(false);
             }
@@ -105,14 +105,14 @@ public class PlayerController : MonoBehaviour
     {
         if (isDeath == true)
         {
-            Actions.PlayerDeath?.Invoke(this);
+            Actions.playerDeath?.Invoke(this);
         }
         else
         {
-            Actions.PlayerScored?.Invoke(this);
+            Actions.playerScored?.Invoke(this);
         }
 
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.5f, 1.5f, "Sound_BubblePop_1", "Sound_BubblePop_2", "Sound_BubblePop_3", "Sound_BubblePop_4", "Sound_BubblePop_5", "Sound_BubblePop_6");
 
         Instantiate(particleBubblePop, transform.position, Quaternion.identity);
 

@@ -2,9 +2,13 @@ using UnityEngine;
 
 public struct GameData
 {
-    private static int score_01 = 4;
-    private static int score_02 = 4;
-    private static int targetScore = 6;
+    private static int setScore_01 = 1;
+    private static int setScore_02 = 1;
+    private static int setTargetScore = 21;
+
+    private static int score_01 = setScore_01;
+    private static int score_02 = setScore_02;
+    private static int targetScore = setTargetScore;
 
     public static int Score_01
     {
@@ -26,8 +30,8 @@ public struct GameData
 
     public static void ResetGameData()
     {
-        score_01 = 4;
-        score_02 = 4;
-        targetScore = 6;
+        score_01 = setScore_01;
+        score_02 = setScore_02;
+        targetScore = setTargetScore;
     }
 }

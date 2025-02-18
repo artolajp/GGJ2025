@@ -31,6 +31,13 @@ public class BombBox : CollisionComponent
                     {
                         buildBox.BuildingStatus = 2;
                     }
+                    else
+                    {
+                        if (triggerBox.GetBuildBox.BuildingStatus == 3)
+                        {
+                            buildBox.BuildingStatus = 3;
+                        }
+                    }
                 }
             }
 
@@ -49,7 +56,7 @@ public class BombBox : CollisionComponent
 
     public void Detonate()
     {
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1f, 1f, "Sound_BombExplosion_1", "Sound_BombExplosion_2", "Sound_BombExplosion_3");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(1f, 1f, "Sound_BombExplosion_1", "Sound_BombExplosion_2", "Sound_BombExplosion_3");
 
         //Particles.
 
@@ -65,7 +72,7 @@ public class BombBox : CollisionComponent
             }
         }
 
-        Actions.PortalBuilded?.Invoke();
+        Actions.portalBuilded?.Invoke();
 
         Destroy(transform.parent.gameObject);
     }

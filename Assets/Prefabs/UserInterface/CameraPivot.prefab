@@ -211,7 +211,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0
     stereoPan: 0
     spatialBlend: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0
     stereoPan: 0
     spatialBlend: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 0.6
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -401,7 +401,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 1
     priority: 0
-    volume: 1
+    volume: 0.05
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -451,7 +451,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -471,7 +471,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -481,7 +481,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
     outputAudioMixerGroup: {fileID: 0}
     loop: 0
     priority: 0
-    volume: 1
+    volume: 0.2
     pitch: 0.1
     stereoPan: 0
     spatialBlend: 0

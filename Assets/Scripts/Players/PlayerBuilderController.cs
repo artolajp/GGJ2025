@@ -19,10 +19,18 @@ public class PlayerBuilderController : MonoBehaviour
 
     private int maximumGridSteps = 10;
 
+    private static bool bombExtraChance = false;
+
     public int PlayerNumber
     {
         get { return playerNumber; }
         set { playerNumber = value; }
+    }
+
+    public static bool BombExtraChance
+    {
+        get { return bombExtraChance; }
+        set { bombExtraChance = value; }
     }
 
     private void Awake()
@@ -46,30 +54,68 @@ public class PlayerBuilderController : MonoBehaviour
     private int GetRandomBuilding()
     {
         int getScore = playerNumber == 0 ? GameData.Score_01 : GameData.Score_02;
+        int getScoreFraction = (int) UnityEngine.Mathf.Round((GameData.TargetScore - 1) / 5);
+        int getBuilding = -1;
 
-        //DELETE:
-        //int getBuilding = playerNumber == 0 ? 12 : 15;
-        //int getBuilding = UnityEngine.Random.Range(12, 16);
+        getScore--;
 
-        int getBuilding = UnityEngine.Random.Range(0, buildings.Length);
-
-        if (getScore < 4)
+        if (getScore < getScoreFraction)
         {
-            if (getBuilding == 0)
+            getBuilding = UnityEngine.Random.Range(1, 5);
+        }
+
+        if (getScore >= getScoreFraction && getScore < getScoreFraction * 2)
+        {
+            getBuilding = UnityEngine.Random.Range(0, 13);
+
+            if (getBuilding != 0 && getBuilding < 5)
             {
-                getBuilding += UnityEngine.Random.Range(1, 4);
+                getBuilding += UnityEngine.Random.Range(0, 2);
             }
         }
 
-        if (getScore > 6 && getScore < 8)
+        if (getScore >= getScoreFraction * 2 && getScore < getScoreFraction * 3)
         {
+            getBuilding = UnityEngine.Random.Range(0, 15);
+
             if (getBuilding != 0 && getBuilding < 5)
             {
-                getBuilding += UnityEngine.Random.Range(4, 6);
+                getBuilding += UnityEngine.Random.Range(0, 1);
+            }
+        }
+
+        if (getScore >= getScoreFraction * 3 && getScore < getScoreFraction * 4)
+        {
+            getBuilding = UnityEngine.Random.Range(0, buildings.Length);
+
+            if (getBuilding != 0 && getBuilding < 5)
+            {
+                getBuilding += UnityEngine.Random.Range(0, 1);
+            }
+        }
+
+        if (getScore >= getScoreFraction * 4 && getScore < getScoreFraction * 5)
+        {
+            getBuilding = UnityEngine.Random.Range(0, buildings.Length);
+
+            if (getBuilding != 0 && getBuilding < 13)
+            {
+                getBuilding += UnityEngine.Random.Range(0, 5);
+            }
+        }
+
+        if (bombExtraChance == true)
+        {
+            if (UnityEngine.Random.Range(0, 5) <= 3)
+            {
+                getBuilding = 0;
             }
         }
 
         getBuilding = Mathf.Clamp(getBuilding, 0, buildings.Length - 1);
+
+        //[DELETE]:
+        //getBuilding = playerNumber == 0 ? 0 : 6;
 
         return getBuilding;
     }
@@ -83,7 +129,7 @@ public class PlayerBuilderController : MonoBehaviour
 
         StartCoroutine("InputDelay");
 
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1f, 1f, "Sound_DeskClick_1", "Sound_DeskClick_2", "Sound_DeskClick_3");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(1f, 1f, "Sound_DeskClick_1", "Sound_DeskClick_2", "Sound_DeskClick_3");
 
         Vector2 movementVector = movementValue.Get<Vector2>();
 
@@ -102,7 +148,7 @@ public class PlayerBuilderController : MonoBehaviour
 
         StartCoroutine("InputDelay");
 
-        FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_RotateBuilding_1", "Sound_RotateBuilding_2", "Sound_RotateBuilding_3");
+        FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.2f, 1.2f, "Sound_RotateBuilding_1", "Sound_RotateBuilding_2", "Sound_RotateBuilding_3");
 
         transform.Rotate(0, 90f, 0);
     }
@@ -120,9 +166,9 @@ public class PlayerBuilderController : MonoBehaviour
         {
             if (buildBox.BuildingStatus == 1)
             {
-                Actions.PlayerBuilded?.Invoke(this);
+                Actions.playerBuilded?.Invoke(this);
 
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.2f, 1.2f, "Sound_BuildPlaced_1", "Sound_BuildPlaced_2", "Sound_BuildPlaced_3");
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.2f, 1.2f, "Sound_BuildPlaced_1", "Sound_BuildPlaced_2", "Sound_BuildPlaced_3");
 
                 buildBox.BuildingStatus = 2;
                 triggerBox.IsPlaced = true;
@@ -132,7 +178,7 @@ public class PlayerBuilderController : MonoBehaviour
                 // New portal builded.
                 if (buildingNumber == 12)
                 {
-                    Actions.PortalBuilded?.Invoke();
+                    Actions.portalBuilded?.Invoke();
                 }
 
                 transform.DetachChildren();
@@ -140,21 +186,21 @@ public class PlayerBuilderController : MonoBehaviour
             }
             else
             {
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Can'tPlaceBuilding");
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.5f, 1.5f, "Sound_Can'tPlaceBuilding");
             }
         }
         else
         {
             if (buildBox.BuildingStatus == 3)
             {
-                Actions.PlayerBuilded?.Invoke(this);
+                Actions.playerBuilded?.Invoke(this);
 
                 bombBox.Detonate();
                 Destroy(gameObject);
             }
             else
             {
-                FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Can'tPlaceBuilding");
+                FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(0.5f, 1.5f, "Sound_Can'tPlaceBuilding");
             }
         }
     }

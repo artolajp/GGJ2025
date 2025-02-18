@@ -3,10 +3,10 @@ using System;
 
 public class Actions
 {
-    public static Action<PlayerController> PlayerDeath;
-    public static Action<PlayerController> PlayerScored;
-    public static Action<PlayerBuilderController> PlayerBuilded;
-    public static Action PortalBuilded;
+    public static Action<PlayerController> playerDeath;
+    public static Action<PlayerController> playerScored;
+    public static Action<PlayerBuilderController> playerBuilded;
+    public static Action portalBuilded;
     public static Action<bool> spelunkyTime;
     public static Action rulerIsDone;
     public static Action<bool> canShoot;
