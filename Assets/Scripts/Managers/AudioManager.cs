@@ -4,25 +4,10 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
     public Audio[] sounds;
 
     void Awake()
     {
-        // Make persistant.
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-
         // Asing audio sources.
         foreach (Audio sound in sounds)
         {

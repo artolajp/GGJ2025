@@ -652,9 +652,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1028244723659350565}
   - component: {fileID: 3391469747478146622}
-  - component: {fileID: 1941362106607624317}
   - component: {fileID: 8117455112107566238}
   - component: {fileID: 571651230157677259}
+  - component: {fileID: 1941362106607624317}
   m_Layer: 5
   m_Name: ScorePanel
   m_TagString: Untagged
@@ -691,20 +691,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6864886356501182624}
   m_CullTransparentMesh: 1
---- !u!114 &1941362106607624317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6864886356501182624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8caf78ae065694f558752657776ddff0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliderPlayer_01: {fileID: 7156673039333671099}
-  sliderPlayer_02: {fileID: 7743730995407131170}
 --- !u!114 &8117455112107566238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +750,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1941362106607624317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6864886356501182624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caf78ae065694f558752657776ddff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderPlayer_01: {fileID: 7156673039333671099}
+  sliderPlayer_02: {fileID: 7743730995407131170}
 --- !u!1 &6946157767467369569
 GameObject:
   m_ObjectHideFlags: 0

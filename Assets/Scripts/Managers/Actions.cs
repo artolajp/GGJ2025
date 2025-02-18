@@ -12,4 +12,5 @@ public class Actions
     public static Action<bool> canShoot;
     public static Action<Lasert> lasertPortalTouched;
     public static Action<Lasert> lasertPortalUntouched;
+    public static Action<string> makeTransition;
 }

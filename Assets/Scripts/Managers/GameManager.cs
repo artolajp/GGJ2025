@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score_02 = 2;
     */
 
-    [SerializeField] private int targetScore = 40;
     [SerializeField] ScorePanel scorePanel = null;
     [SerializeField] private GameObject cells;
 
@@ -56,6 +55,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+
         CalculateTimer();
 
         if (Input.GetKeyDown("space"))
@@ -159,11 +163,11 @@ public class GameManager : MonoBehaviour
             }
             break;
 
-            case GameState.Playing when GameData.Score_01 < targetScore && GameData.Score_02 < targetScore:
+            case GameState.Playing when GameData.Score_01 < GameData.TargetScore && GameData.Score_02 < GameData.TargetScore:
             {
                 Actions.canShoot?.Invoke(false);
 
-                scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () => {});
+                scorePanel.Show(GameData.Score_01, GameData.Score_02, GameData.TargetScore);
 
                 timerText.text = "Scores:";
 
@@ -175,22 +179,12 @@ public class GameManager : MonoBehaviour
 
             case GameState.Playing:
             {
-                scorePanel.Show(GameData.Score_01, GameData.Score_02, targetScore, () =>
-                {
-                    if (GameData.Score_01 > GameData.Score_02)
-                    {
-                        SceneManager.LoadScene("WinGreen");
-                    }
-                    else if (GameData.Score_02 > GameData.Score_01)
-                    {
-                        SceneManager.LoadScene("WinRed");
-                    }
-                    else
-                    {
-                        SceneManager.LoadScene("Menu");
-                    }
-                });
+                Actions.canShoot?.Invoke(false);
 
+                scorePanel.Show(GameData.Score_01, GameData.Score_02, GameData.TargetScore);
+
+                currentTime = 3f;
+                timerMode = TimerMode.Transition;
                 gameState = GameState.EndScreen;
             }
             break;
@@ -208,9 +202,21 @@ public class GameManager : MonoBehaviour
             }
             break;
 
-            default:
+            case GameState.EndScreen:
             {
-                gameState = GameState.EndScreen;
+                if (GameData.Score_01 > GameData.Score_02)
+                {
+                    Actions.makeTransition?.Invoke("Scene_GreenWin");
+                }
+                else if (GameData.Score_02 > GameData.Score_01)
+                {
+                    Actions.makeTransition?.Invoke("Scene_RedWin");
+                }
+                else
+                {
+                    Debug.Log("Tie!");
+                    Actions.makeTransition?.Invoke("Scene_DrawAndTie");
+                }
             }
             break;
         }
@@ -270,9 +276,8 @@ public class GameManager : MonoBehaviour
         if (player_01 == null && player_02 == null)
         {
             Actions.PlayerDeath -= OnPlayerDead;
-            Actions.PlayerDeath -= OnPlayerScored;
+            Actions.PlayerScored -= OnPlayerScored;
 
-            targetScore--;
             Actions.spelunkyTime?.Invoke(false);
 
             timerNumbersText.text = defeatTexts[UnityEngine.Random.Range(0, defeatTexts.Length)];
@@ -298,7 +303,7 @@ public class GameManager : MonoBehaviour
         if (player_01 == null && player_02 == null)
         {
             Actions.PlayerDeath -= OnPlayerDead;
-            Actions.PlayerDeath -= OnPlayerScored;
+            Actions.PlayerScored -= OnPlayerScored;
 
             Actions.spelunkyTime?.Invoke(false);
 

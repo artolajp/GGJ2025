@@ -1,19 +1,18 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MenuPanel : MonoBehaviour
 {
-    void Start()
+    void Update()
     {
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+
         if (Input.anyKey)
         {
-            GoToGame();
+            GameData.ResetGameData();
+            Actions.makeTransition?.Invoke("Scene_Game");
         }
-    }
-
-    private void GoToGame()
-    {
-        SceneManager.LoadScene("Scene_Game");
     }
 }

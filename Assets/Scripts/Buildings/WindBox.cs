@@ -10,7 +10,7 @@ public class WindBox : MonoBehaviour
         set { windForce = value; }
     }
 
-    private void Awake()
+    private void Start()
     {
         FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(0.5f, 1.5f, "Sound_Fan");
     }
