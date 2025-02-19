@@ -13,8 +13,6 @@ public class CameraController : MonoBehaviour
     public GameObject player_02;
     private GameObject remainingPlayer = null;
 
-    private bool playMusic = true;
-
     private void Awake()
     {
         targetPosition = transform.position;
@@ -22,12 +20,6 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (playMusic == true)
-        {
-            FindAnyObjectByType<AudioManager>().AudioPlaySoundVariation(1, 1, "Music_Level_01");
-            playMusic = false;
-        }
-
         if (player_01 != null && player_02 != null)
         {
             // Move the camera in the middle position of the two player positions.

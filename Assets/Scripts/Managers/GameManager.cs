@@ -58,10 +58,13 @@ public class GameManager : MonoBehaviour
 
         CalculateTimer();
 
+        //[DEBUG]:
+        /*
         if (Input.GetKeyDown("space"))
         {
             ChangeState();
         }
+        */
     }
 
     private void CalculateTimer()

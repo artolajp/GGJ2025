@@ -61,7 +61,12 @@ public class PlayerBuilderController : MonoBehaviour
 
         if (getScore < getScoreFraction)
         {
-            getBuilding = UnityEngine.Random.Range(1, 5);
+            getBuilding = UnityEngine.Random.Range(1, 8);
+
+            if (getBuilding >= 5)
+            {
+                getBuilding = Mathf.Clamp(getBuilding - UnityEngine.Random.Range(0, 8), 1, buildings.Length - 1);
+            }
         }
 
         if (getScore >= getScoreFraction && getScore < getScoreFraction * 2)
@@ -70,7 +75,7 @@ public class PlayerBuilderController : MonoBehaviour
 
             if (getBuilding != 0 && getBuilding < 5)
             {
-                getBuilding += UnityEngine.Random.Range(0, 2);
+                getBuilding += UnityEngine.Random.Range(0, 1);
             }
         }
 
@@ -80,7 +85,12 @@ public class PlayerBuilderController : MonoBehaviour
 
             if (getBuilding != 0 && getBuilding < 5)
             {
-                getBuilding += UnityEngine.Random.Range(0, 1);
+                getBuilding += UnityEngine.Random.Range(0, 4);
+            }
+
+            if (UnityEngine.Random.Range(0, 4) == 0)
+            {
+                getBuilding = 14;
             }
         }
 
@@ -90,7 +100,12 @@ public class PlayerBuilderController : MonoBehaviour
 
             if (getBuilding != 0 && getBuilding < 5)
             {
-                getBuilding += UnityEngine.Random.Range(0, 1);
+                getBuilding += UnityEngine.Random.Range(0, 8);
+            }
+
+            if (UnityEngine.Random.Range(0, 6) == 0)
+            {
+                getBuilding = 14;
             }
         }
 
@@ -106,7 +121,7 @@ public class PlayerBuilderController : MonoBehaviour
 
         if (bombExtraChance == true)
         {
-            if (UnityEngine.Random.Range(0, 5) <= 3)
+            if (UnityEngine.Random.Range(0, 1) == 0)
             {
                 getBuilding = 0;
             }
@@ -114,7 +129,7 @@ public class PlayerBuilderController : MonoBehaviour
 
         getBuilding = Mathf.Clamp(getBuilding, 0, buildings.Length - 1);
 
-        //[DELETE]:
+        //[DEBUG]:
         //getBuilding = playerNumber == 0 ? 0 : 6;
 
         return getBuilding;
@@ -176,7 +191,7 @@ public class PlayerBuilderController : MonoBehaviour
                 Instantiate(triggerBox.ParticleBuildPlaced, transform.position, transform.rotation);
 
                 // New portal builded.
-                if (buildingNumber == 12)
+                if (buildingNumber == 14)
                 {
                     Actions.portalBuilded?.Invoke();
                 }

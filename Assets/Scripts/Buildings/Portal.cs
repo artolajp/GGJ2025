@@ -10,7 +10,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private GameObject portal;
 
     [SerializeField] private float getPortalSpeed;
-    private float portalFrameSpeed = 2f;
+    private float portalFrameSpeed = 4f;
 
     private void OnEnable()
     {
@@ -114,7 +114,7 @@ public class Portal : MonoBehaviour
         teleportDelay = true;
         portalFrameSpeed = 0.2f;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         teleportDelay = false;
         portalFrameSpeed = getPortalSpeed;
