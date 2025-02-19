@@ -250,6 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildBox: {fileID: 1546801405120979967}
+  particleExplotion_01: {fileID: 8152839933418924111, guid: 6442580a6384652468718e3fa233f6e2, type: 3}
+  particleExplotion_02: {fileID: 8152839933418924111, guid: 13783e6b15617e14cb36001d5d233f3d, type: 3}
 --- !u!1001 &545712837553255576
 PrefabInstance:
   m_ObjectHideFlags: 0

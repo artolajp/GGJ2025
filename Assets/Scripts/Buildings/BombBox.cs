@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class BombBox : CollisionComponent
 {
     [SerializeField] private BuildBox buildBox;
+    [SerializeField] private GameObject particleExplotion_01;
+    [SerializeField] private GameObject particleExplotion_02;
 
     private void FixedUpdate()
     {
@@ -58,7 +60,8 @@ public class BombBox : CollisionComponent
     {
         FindAnyObjectByType<AudioManager>().AudioPlaySoundWithSource(1f, 1f, "Sound_BombExplosion_1", "Sound_BombExplosion_2", "Sound_BombExplosion_3");
 
-        //Particles.
+        Instantiate(particleExplotion_01, transform.position, Quaternion.identity);
+        Instantiate(particleExplotion_02, transform.position, Quaternion.identity);
 
         TriggerBox triggerBox = null;
 
