@@ -7,6 +7,7 @@ public class CameraPivot : MonoBehaviour
     void Start()
     {
         Actions.canShoot?.Invoke(true);
+        Actions.portalBuilded?.Invoke();
     }
 
     void Update()

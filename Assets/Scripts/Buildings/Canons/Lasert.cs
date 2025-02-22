@@ -46,7 +46,14 @@ public class Lasert : MonoBehaviour
         {
             if (hit.collider && hit.collider.tag != "PlayerBubble")
             {
-                SetLasertsEndPoint(hit.point);
+                if (hit.collider.tag == "PortalBox")
+                {
+                    SetLasertsEndPoint(hit.collider.transform.position - new Vector3(0, 0.2f, 0));
+                }
+                else
+                {
+                    SetLasertsEndPoint(hit.point);
+                }
             }
 
             if (hit.collider.tag == "PlayerBubble")
@@ -66,7 +73,7 @@ public class Lasert : MonoBehaviour
 
                         if (getPortal != null)
                         {
-                            portalStartPoint = getPortal.transform.position;
+                            portalStartPoint = getPortal.transform.position - new Vector3(0, 0.2f, 0);
                             portalRotation = getPortal.transform.rotation;
 
                             Actions.lasertPortalTouched?.Invoke(this);
