@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSpawner: {fileID: 5841215302206424430}
-  animationSpeed: 1
+  animationSpeed: 0.8
   lasert: {fileID: 2355684669513874666, guid: 8d8e2bcb408359148bc4cadbceea32ee, type: 3}
 --- !u!4 &578554387825295815 stripped
 Transform:

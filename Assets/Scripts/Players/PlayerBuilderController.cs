@@ -115,7 +115,7 @@ public class PlayerBuilderController : MonoBehaviour
         getBuilding = Mathf.Clamp(getBuilding, 0, buildings.Length - 1);
 
         //[DEBUG]:
-        //getBuilding = playerNumber == 0 ? 15 : 6;
+        //getBuilding = playerNumber == 0 ? 15 : 14;
 
         return getBuilding;
     }

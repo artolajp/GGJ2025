@@ -280,6 +280,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DecorationItems
       objectReference: {fileID: 0}
+    - target: {fileID: 3074049416361355023, guid: 1fec4143923f0a442ab77f64edbda1f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5092152771510499771, guid: 1fec4143923f0a442ab77f64edbda1f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

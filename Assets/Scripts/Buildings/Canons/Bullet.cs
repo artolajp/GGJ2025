@@ -20,7 +20,7 @@ public abstract class Bullet : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "PortalBox" || collider.tag == "Respawn" || collider.tag == "Finish" || collider.tag == "WindBox")
+        if (collider.tag == "PortalBox" || collider.tag == "Respawn" || collider.tag == "Finish" || collider.tag == "WindBox" || collider.tag == "HoneyBox")
         {
             return;
         }

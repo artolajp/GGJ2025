@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3838285266524820214}
   - component: {fileID: 989645954175982854}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HoneyBox
   m_TagString: HoneyBox
   m_Icon: {fileID: 0}
