@@ -18,6 +18,7 @@ public class BulletPlane : Bullet
 
         if (targets.Length > 0)
         {
+            Debug.Log(targets.Length);
             selectedTarget = targets[Random.Range(0, targets.Length)];
         }
     }
@@ -42,6 +43,7 @@ public class BulletPlane : Bullet
         direction.Normalize();
 
         Vector3 rotationAmount = Vector3.Cross(direction, transform.forward) * Vector3.Angle(transform.forward, direction);
+        Vector3 targetForce = transform.forward * speed;
 
         rigidBody.angularVelocity = -rotationAmount * rotateSpeed;
         rigidBody.linearVelocity = transform.forward * speed;
@@ -68,12 +70,17 @@ public class BulletPlane : Bullet
 
             if (fieldBox != null)
             {
-                speed += 0.4f;
+                Vector3 windDirection = collider.transform.forward;
+                float windStrength = fieldBox.WindForce * 8;
 
-                float windStrength = fieldBox.WindForce * 4;
-                Vector3 collisionNormal = collider.transform.forward;
+                float dotProduct = Vector3.Dot(transform.forward, windDirection);
 
-                rigidBody.AddForce(collisionNormal * windStrength);
+                float speedAdjustment = dotProduct;
+                float newSpeed = speed + speedAdjustment;
+
+                rigidBody.linearVelocity = rigidBody.linearVelocity.normalized * newSpeed;
+
+                rigidBody.AddForce(windDirection * windStrength);
             }
         }
     }

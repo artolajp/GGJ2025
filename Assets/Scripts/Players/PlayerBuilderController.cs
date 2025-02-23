@@ -59,64 +59,49 @@ public class PlayerBuilderController : MonoBehaviour
 
         getScore--;
 
-        if (getScore < getScoreFraction)
+        if (getScore < 3)
         {
-            getBuilding = UnityEngine.Random.Range(1, 8);
+            getBuilding = UnityEngine.Random.Range(1, 5);
+        }
 
-            if (getBuilding >= 5)
-            {
-                getBuilding = Mathf.Clamp(getBuilding - UnityEngine.Random.Range(0, 8), 1, buildings.Length - 1);
-            }
+        if (getScore >= 3 && getScore < getScoreFraction)
+        {
+            getBuilding = UnityEngine.Random.Range(1, 9);
         }
 
         if (getScore >= getScoreFraction && getScore < getScoreFraction * 2)
         {
-            getBuilding = UnityEngine.Random.Range(0, 13);
+            getBuilding = UnityEngine.Random.Range(1, 5);
 
-            if (getBuilding != 0 && getBuilding < 5)
+            if (UnityEngine.Random.Range(0, 3) == 0)
             {
-                getBuilding += UnityEngine.Random.Range(0, 1);
+                getBuilding += UnityEngine.Random.Range(6, 9);
             }
         }
 
         if (getScore >= getScoreFraction * 2 && getScore < getScoreFraction * 3)
         {
-            getBuilding = UnityEngine.Random.Range(0, 15);
-
-            if (getBuilding != 0 && getBuilding < 5)
-            {
-                getBuilding += UnityEngine.Random.Range(0, 4);
-            }
+            getBuilding = UnityEngine.Random.Range(6, 13);
 
             if (UnityEngine.Random.Range(0, 4) == 0)
             {
-                getBuilding = 14;
+                getBuilding = UnityEngine.Random.Range(14, 16);
             }
         }
 
         if (getScore >= getScoreFraction * 3 && getScore < getScoreFraction * 4)
         {
-            getBuilding = UnityEngine.Random.Range(0, buildings.Length);
+            getBuilding = UnityEngine.Random.Range(1, buildings.Length);
 
-            if (getBuilding != 0 && getBuilding < 5)
+            if (UnityEngine.Random.Range(0, 4) == 0)
             {
-                getBuilding += UnityEngine.Random.Range(0, 8);
-            }
-
-            if (UnityEngine.Random.Range(0, 6) == 0)
-            {
-                getBuilding = 14;
+                getBuilding = UnityEngine.Random.Range(14, 16);
             }
         }
 
         if (getScore >= getScoreFraction * 4 && getScore < getScoreFraction * 5)
         {
-            getBuilding = UnityEngine.Random.Range(0, buildings.Length);
-
-            if (getBuilding != 0 && getBuilding < 13)
-            {
-                getBuilding += UnityEngine.Random.Range(0, 5);
-            }
+            getBuilding = UnityEngine.Random.Range(12, buildings.Length);
         }
 
         if (bombExtraChance == true)
@@ -130,7 +115,7 @@ public class PlayerBuilderController : MonoBehaviour
         getBuilding = Mathf.Clamp(getBuilding, 0, buildings.Length - 1);
 
         //[DEBUG]:
-        //getBuilding = playerNumber == 0 ? 0 : 6;
+        //getBuilding = playerNumber == 0 ? 15 : 6;
 
         return getBuilding;
     }

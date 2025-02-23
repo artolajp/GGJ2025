@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoSpawner: {fileID: 6343120863485708110}
-  animationSpeed: 0.4
+  animationSpeed: 1
   bullet: {fileID: 4425410357521626277, guid: 4a6623fb4d8b83146a8d53eae604e46a, type: 3}
 --- !u!1 &4253792761558928506
 GameObject:
@@ -827,7 +827,7 @@ Transform:
   m_GameObject: {fileID: 6343120863485708110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.8000004, y: 0, z: 0}
+  m_LocalPosition: {x: -2.1000004, y: 0.5, z: -0.00000003576278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
