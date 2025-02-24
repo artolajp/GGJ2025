@@ -112,7 +112,7 @@ public class PlayerBuilderController : MonoBehaviour
                 }
             }
 
-            if (UnityEngine.Random.Range(0, 3) == 0)
+            if (UnityEngine.Random.Range(0, 5) == 0)
             {
                 getBuilding = 6;
             }
