@@ -4,7 +4,7 @@ public struct GameData
 {
     private static int setScore_01 = 1;
     private static int setScore_02 = 1;
-    private static int setTargetScore = 21;
+    private static int setTargetScore = 16;
 
     private static int score_01 = setScore_01;
     private static int score_02 = setScore_02;
