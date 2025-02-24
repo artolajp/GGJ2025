@@ -59,10 +59,6 @@ public class PlayerBuilderController : MonoBehaviour
 
         getScore--;
 
-        Debug.Log("Empieza con:");
-        Debug.Log(getBuilding);
-        Debug.Log(getScoreFraction);
-
         if (getScore <= getScoreFraction)
         {
             getBuilding = UnityEngine.Random.Range(1, 5);
@@ -75,7 +71,7 @@ public class PlayerBuilderController : MonoBehaviour
 
         if (getScore > getScoreFraction && getScore <= getScoreFraction * 2)
         {
-            getBuilding = UnityEngine.Random.Range(1, 14);
+            getBuilding = UnityEngine.Random.Range(6, 14);
 
             if (UnityEngine.Random.Range(0, 8) == 0)
             {
@@ -90,6 +86,11 @@ public class PlayerBuilderController : MonoBehaviour
             if (UnityEngine.Random.Range(0, 4) == 0)
             {
                 getBuilding = 15;
+            }
+
+            if (getBuilding < 5)
+            {
+                getBuilding += UnityEngine.Random.Range(0, 8);
             }
         }
 
@@ -116,6 +117,11 @@ public class PlayerBuilderController : MonoBehaviour
             {
                 getBuilding = 6;
             }
+
+            if (getBuilding < 5)
+            {
+                getBuilding += UnityEngine.Random.Range(0, 8);
+            }
         }
 
         if (getScore > getScoreFraction * 4 && getScore <= getScoreFraction * 5)
@@ -130,6 +136,11 @@ public class PlayerBuilderController : MonoBehaviour
                 {
                     getBuilding = 18;
                 }
+            }
+
+            if (getBuilding < 5)
+            {
+                getBuilding += UnityEngine.Random.Range(4, 10);
             }
         }
 

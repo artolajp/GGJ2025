@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidBody;
     private float movement_x;
     private float movement_y;
-    private float slowdownForce = 80f;
+    private float slowdownForce = 120f;
 
     public int PlayerNumber
     {
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
                 if (rigidBody.linearVelocity.magnitude < 4f)
                 {
-                    getForce = 8f;
+                    getForce = 4f;
                 }
 
                 rigidBody.AddForce(oppositeForce * getForce);

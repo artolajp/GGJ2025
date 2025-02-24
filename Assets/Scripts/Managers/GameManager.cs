@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     private float currentTime = 0;
     private float timer = 15f;
+    private float buildingTimer = 25f;
     private TimerMode timerMode = TimerMode.Playing;
     [SerializeField] private TMP_Text timerNumbersText;
     [SerializeField] private TMP_Text timerText;
@@ -152,7 +153,7 @@ public class GameManager : MonoBehaviour
             Destroy(player_02);
         }
 
-        currentTime = timer;
+        StartClock();
 
         switch (gameState)
         {
@@ -262,6 +263,8 @@ public class GameManager : MonoBehaviour
 
     private void StartBuilding()
     {
+        currentTime = buildingTimer;
+
         timerText.text = "Building:";
         timerMode = TimerMode.Building;
 
