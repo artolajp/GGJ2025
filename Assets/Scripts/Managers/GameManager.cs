@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Transform> playerStartPositions = new();
     private GameObject player_01;
     private GameObject player_02;
-    private int deadPlayers = 0;
+    private int deadPlaters = 0;
 
     private float currentTime = 0;
     private float timer = 15f;
@@ -222,7 +222,6 @@ public class GameManager : MonoBehaviour
 
     private void StartPlaying()
     {
-        /*
         if (GameData.Score_01 >= GameData.TargetScore / 2 || GameData.Score_02 >= GameData.TargetScore / 2)
         {
             timer = 30f;
@@ -234,9 +233,8 @@ public class GameManager : MonoBehaviour
                 timer = 20f;
             }
         }
-        */
 
-        deadPlayers = 0;
+        deadPlaters = 0;
         PlayerBuilderController.BombExtraChance = false;
 
         timerText.text = "Time:";
@@ -267,7 +265,7 @@ public class GameManager : MonoBehaviour
 
         gameState = GameState.Building;
 
-        if (deadPlayers >= 2)
+        if (deadPlaters >= 2)
         {
             PlayerBuilderController.BombExtraChance = true;
         }
@@ -283,7 +281,7 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerDead(PlayerController player)
     {
-        deadPlayers++;
+        deadPlaters++;
 
         if (player.PlayerNumber == 0)
         {
@@ -310,11 +308,6 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerScored(PlayerController player)
     {
-        if (timerMode != TimerMode.Ruler)
-        {
-            currentTime = 1f;
-        }
-
         if (player.PlayerNumber == 0)
         {
             player_01 = null;
