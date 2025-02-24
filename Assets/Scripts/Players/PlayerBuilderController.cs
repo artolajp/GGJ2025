@@ -75,9 +75,9 @@ public class PlayerBuilderController : MonoBehaviour
 
         if (getScore > getScoreFraction && getScore <= getScoreFraction * 2)
         {
-            getBuilding = UnityEngine.Random.Range(9, 14);
+            getBuilding = UnityEngine.Random.Range(1, 14);
 
-            if (UnityEngine.Random.Range(0, 5) == 0)
+            if (UnityEngine.Random.Range(0, 8) == 0)
             {
                 getBuilding = 14;
             }
@@ -85,9 +85,9 @@ public class PlayerBuilderController : MonoBehaviour
 
         if (getScore > getScoreFraction * 2 && getScore <= getScoreFraction * 3)
         {
-            getBuilding = UnityEngine.Random.Range(6, 15);
+            getBuilding = UnityEngine.Random.Range(1, 15);
 
-            if (UnityEngine.Random.Range(0, 3) == 0)
+            if (UnityEngine.Random.Range(0, 4) == 0)
             {
                 getBuilding = 15;
             }
@@ -105,11 +105,16 @@ public class PlayerBuilderController : MonoBehaviour
                 {
                     getBuilding = 7;
 
-                    if (UnityEngine.Random.Range(0, 4) == 0)
+                    if (UnityEngine.Random.Range(0, 5) == 0)
                     {
                         getBuilding = 15;
                     }
                 }
+            }
+
+            if (UnityEngine.Random.Range(0, 3) == 0)
+            {
+                getBuilding = 6;
             }
         }
 
